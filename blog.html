@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="el">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="Νέα, άρθρα και τεχνικές γνώσεις για αρχιτεκτονικά υλικά, επαγγελματικά δάπεδα και σύγχρονους χώρους."
+  >
+
+  <meta name="robots" content="index,follow">
+
+  <title>Insights & Articles | Materia Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script defer src="header.js"></script>
+  <script defer src="footer.js"></script>
+  <script defer src="script.js"></script>
+
+  <style>
+    /* ======================================================
+       BLOG / INSIGHTS PAGE
+    ====================================================== */
+
+    .blog-page {
+      --blog-accent: #8c131b;
+      --blog-accent-light: #b64a52;
+      --blog-dark: #090a0b;
+      --blog-paper: #f4f1eb;
+      --blog-white: #ffffff;
+      --blog-muted: #686a6e;
+      --blog-line: rgba(16, 17, 18, 0.14);
+    }
+
+    .blog-page *,
+    .blog-page *::before,
+    .blog-page *::after {
+      box-sizing: border-box;
+    }
+
+    /* HERO */
+
+    .blog-hero {
+      min-height: 70vh;
+      padding: 190px 0 100px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      color: var(--blog-white);
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 5, 6, 0.97) 0%,
+          rgba(5, 5, 6, 0.82) 48%,
+          rgba(5, 5, 6, 0.48) 100%
+        ),
+        url("images/blog-hero.jpg") center / cover no-repeat;
+    }
+
+    .blog-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .blog-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.55fr);
+      align-items: end;
+      gap: 80px;
+    }
+
+    .blog-eyebrow {
+      margin: 0 0 25px;
+      color: var(--blog-accent-light);
+      font-family: Manrope, Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .blog-title {
+      max-width: 1000px;
+      margin: 0;
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(58px, 8vw, 120px);
+      font-weight: 500;
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+    }
+
+    .blog-title span {
+      color: var(--blog-accent-light);
+    }
+
+    .blog-hero-copy {
+      margin: 0;
+      padding-left: 28px;
+      color: rgba(255, 255, 255, 0.68);
+      border-left: 1px solid var(--blog-accent);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    /* FILTERS */
+
+    .blog-filter-section {
+      color: var(--blog-dark);
+      background: var(--blog-paper);
+      border-bottom: 1px solid var(--blog-line);
+    }
+
+    .blog-filters {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .blog-filter-label {
+      margin: 0;
+      color: var(--blog-accent);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .blog-filter-list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .blog-filter {
+      padding: 10px 15px;
+      color: #55575b;
+      background: transparent;
+      border: 1px solid rgba(16, 17, 18, 0.16);
+      cursor: pointer;
+      font-family: Manrope, Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .blog-filter:hover,
+    .blog-filter.is-active {
+      color: var(--blog-white);
+      background: var(--blog-accent);
+      border-color: var(--blog-accent);
+    }
+
+    /* MAIN CONTENT */
+
+    .blog-content {
+      padding: 115px 0 140px;
+      color: var(--blog-dark);
+      background: var(--blog-paper);
+    }
+
+    .blog-section-head {
+      margin-bottom: 55px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    .blog-section-title {
+      max-width: 720px;
+      margin: 0;
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .blog-section-copy {
+      max-width: 470px;
+      margin: 0;
+      color: var(--blog-muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* FEATURED ARTICLE */
+
+    .featured-article {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.65fr);
+      min-height: 610px;
+      margin-bottom: 105px;
+      color: var(--blog-white);
+      background: var(--blog-dark);
+    }
+
+    .featured-media {
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .featured-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.03),
+          rgba(0, 0, 0, 0.2)
+        );
+      pointer-events: none;
+    }
+
+    .featured-article:hover .featured-media img {
+      transform: scale(1.035);
+    }
+
+    .featured-copy {
+      padding: clamp(42px, 5vw, 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 11px;
+      color: var(--blog-accent-light);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .article-meta .separator {
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .featured-title {
+      margin: 35px 0 28px;
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(34px, 3.4vw, 55px);
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+    }
+
+    .featured-description {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .article-link {
+      margin-top: 45px;
+      padding-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      align-self: flex-start;
+      gap: 45px;
+      color: inherit;
+      border-bottom: 1px solid var(--blog-accent);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .article-link span {
+      font-size: 19px;
+      transition: transform 0.3s ease;
+    }
+
+    .article-link:hover span {
+      transform: translate(4px, -4px);
+    }
+
+    /* ARTICLES GRID */
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 65px 30px;
+    }
+
+    .article-card {
+      min-width: 0;
+    }
+
+    .article-card[hidden] {
+      display: none;
+    }
+
+    .article-card-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      margin-bottom: 27px;
+      background: #dedbd5;
+    }
+
+    .article-card-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.65s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .article-card:hover .article-card-media img {
+      transform: scale(1.045);
+    }
+
+    .article-number {
+      position: absolute;
+      top: 17px;
+      left: 17px;
+      z-index: 1;
+      min-width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--blog-white);
+      background: rgba(9, 10, 11, 0.88);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .article-card-title {
+      margin: 18px 0 17px;
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(24px, 2vw, 32px);
+      font-weight: 500;
+      line-height: 1.16;
+      letter-spacing: -0.035em;
+    }
+
+    .article-card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .article-card-title a:hover {
+      color: var(--blog-accent);
+    }
+
+    .article-card-description {
+      margin: 0;
+      color: var(--blog-muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .article-card .article-link {
+      margin-top: 25px;
+      color: var(--blog-dark);
+      gap: 25px;
+    }
+
+    /* NEWSLETTER */
+
+    .blog-newsletter {
+      padding: 115px 0;
+      position: relative;
+      overflow: hidden;
+      color: var(--blog-white);
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 5, 6, 0.97),
+          rgba(5, 5, 6, 0.78)
+        ),
+        url("images/newsletter.jpg") center / cover no-repeat;
+    }
+
+    .newsletter-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.65fr);
+      align-items: end;
+      gap: 100px;
+    }
+
+    .newsletter-title {
+      max-width: 760px;
+      margin: 0;
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(44px, 5.6vw, 83px);
+      font-weight: 500;
+      line-height: 0.99;
+      letter-spacing: -0.05em;
+    }
+
+    .newsletter-title span {
+      color: var(--blog-accent-light);
+    }
+
+    .newsletter-form {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      min-width: 0;
+      padding: 18px 0;
+      color: var(--blog-white);
+      background: transparent;
+      border: 0;
+      outline: none;
+      font: inherit;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .newsletter-form button {
+      padding: 0 4px 0 24px;
+      color: var(--blog-white);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-size: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      transform: translate(4px, -4px);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1100px) {
+      .blog-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .blog-hero-copy {
+        max-width: 650px;
+      }
+
+      .featured-article {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-copy {
+        min-height: 480px;
+      }
+
+      .articles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .newsletter-inner {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      .newsletter-form {
+        max-width: 650px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .blog-hero {
+        min-height: 620px;
+        padding: 150px 0 72px;
+      }
+
+      .blog-filters {
+        padding: 24px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .blog-section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .blog-content {
+        padding: 80px 0 95px;
+      }
+
+      .featured-article {
+        margin-bottom: 75px;
+      }
+
+      .featured-media {
+        min-height: 330px;
+      }
+
+      .featured-copy {
+        min-height: auto;
+        padding: 35px 25px 40px;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .blog-newsletter {
+        padding: 85px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .featured-media img,
+      .article-card-media img,
+      .article-link span,
+      .newsletter-form button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-loader" aria-hidden="true">
+    <span></span>
+  </div>
+
+  <div id="site-header"></div>
+
+  <main id="top" class="blog-page">
+
+    <!-- HERO -->
+
+    <section class="blog-hero" aria-labelledby="blog-page-title">
+      <div class="container blog-hero-inner">
+
+        <div>
+          <p class="blog-eyebrow">
+            MATERIALS · DESIGN · KNOWLEDGE
+          </p>
+
+          <h1 class="blog-title" id="blog-page-title">
+            Insights for<br>
+            <span>better spaces.</span>
+          </h1>
+        </div>
+
+        <p class="blog-hero-copy">
+          Άρθρα, τεχνικές γνώσεις και σχεδιαστικές ιδέες για σύγχρονα
+          επαγγελματικά δάπεδα, υλικά και αρχιτεκτονικές εφαρμογές.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- FILTERS -->
+
+    <section class="blog-filter-section" aria-label="Φίλτρα άρθρων">
+      <div class="container blog-filters">
+
+        <p class="blog-filter-label">Explore by topic</p>
+
+        <div class="blog-filter-list">
+          <button class="blog-filter is-active" type="button" data-filter="all">
+            Όλα
+          </button>
+
+          <button class="blog-filter" type="button" data-filter="flooring">
+            Flooring
+          </button>
+
+          <button class="blog-filter" type="button" data-filter="design">
+            Design
+          </button>
+
+          <button class="blog-filter" type="button" data-filter="sustainability">
+            Sustainability
+          </button>
+
+          <button class="blog-filter" type="button" data-filter="technical">
+            Technical
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ARTICLES -->
+
+    <section class="blog-content">
+      <div class="container">
+
+        <div class="blog-section-head">
+          <div>
+            <p class="blog-eyebrow">LATEST STORIES</p>
+
+            <h2 class="blog-section-title">
+              Γνώση που υποστηρίζει κάθε απόφαση.
+            </h2>
+          </div>
+
+          <p class="blog-section-copy">
+            Εξερευνούμε υλικά, τεχνικές απαιτήσεις και σύγχρονες τάσεις που
+            διαμορφώνουν πιο λειτουργικούς και βιώσιμους χώρους.
+          </p>
+        </div>
+
+        <!-- FEATURED ARTICLE -->
+
+        <article
+          class="featured-article"
+          data-category="sustainability"
+        >
+
+          <a
+            class="featured-media"
+            href="article-sustainable-flooring.html"
+            aria-label="Διαβάστε το άρθρο για τα βιώσιμα δάπεδα"
+          >
+            <img
+              src="images/blog-featured.jpg"
+              alt="Σύγχρονος επαγγελματικός χώρος με βιώσιμο δάπεδο"
+            >
+          </a>
+
+          <div class="featured-copy">
+
+            <div>
+              <div class="article-meta">
+                <span>Sustainability</span>
+                <span class="separator"></span>
+                <time datetime="2026-07-22">22 Ιουλίου 2026</time>
+              </div>
+
+              <h2 class="featured-title">
+                Πώς τα βιώσιμα δάπεδα επηρεάζουν την απόδοση ενός κτιρίου.
+              </h2>
+
+              <p class="featured-description">
+                Από τα EPD και τις εκπομπές VOC έως την κυκλική οικονομία,
+                εξετάζουμε τα βασικά κριτήρια επιλογής υλικών για σύγχρονα
+                έργα υψηλών προδιαγραφών.
+              </p>
+            </div>
+
+            <a
+              class="article-link"
+              href="article-sustainable-flooring.html"
+            >
+              Διαβάστε το άρθρο
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </div>
+        </article>
+
+        <!-- ARTICLE CARDS -->
+
+        <div class="articles-grid">
+
+          <article class="article-card" data-category="flooring">
+
+            <a
+              class="article-card-media"
+              href="article-lvt-guide.html"
+            >
+              <span class="article-number">01</span>
+
+              <img
+                src="images/blog-1.jpg"
+                alt="Δείγματα Luxury Vinyl Tiles"
+              >
+            </a>
+
+            <div class="article-meta">
+              <span>Flooring</span>
+              <span class="separator"></span>
+              <time datetime="2026-07-15">15 Ιουλίου 2026</time>
+            </div>
+
+            <h2 class="article-card-title">
+              <a href="article-lvt-guide.html">
+                LVT: Οδηγός επιλογής για απαιτητικούς επαγγελματικούς χώρους.
+              </a>
+            </h2>
+
+            <p class="article-card-description">
+              Τι πρέπει να γνωρίζετε για αντοχή, ακουστική απόδοση,
+              συντήρηση και αισθητικές επιλογές.
+            </p>
+
+            <a class="article-link" href="article-lvt-guide.html">
+              Περισσότερα
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </article>
+
+          <article class="article-card" data-category="design">
+
+            <a
+              class="article-card-media"
+              href="article-flooring-zoning.html"
+            >
+              <span class="article-number">02</span>
+
+              <img
+                src="images/blog-2.jpg"
+                alt="Διαφορετικές υφές δαπέδου σε σύγχρονο γραφείο"
+              >
+            </a>
+
+            <div class="article-meta">
+              <span>Design</span>
+              <span class="separator"></span>
+              <time datetime="2026-07-08">8 Ιουλίου 2026</time>
+            </div>
+
+            <h2 class="article-card-title">
+              <a href="article-flooring-zoning.html">
+                Χωρικός διαχωρισμός μέσα από χρώμα, υφή και δάπεδο.
+              </a>
+            </h2>
+
+            <p class="article-card-description">
+              Πώς η σωστή εναλλαγή υλικών μπορεί να οργανώσει τη ροή και
+              την ταυτότητα ενός χώρου.
+            </p>
+
+            <a class="article-link" href="article-flooring-zoning.html">
+              Περισσότερα
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </article>
+
+          <article class="article-card" data-category="technical">
+
+            <a
+              class="article-card-media"
+              href="article-acoustic-flooring.html"
+            >
+              <span class="article-number">03</span>
+
+              <img
+                src="images/blog-3.jpg"
+                alt="Ακουστικό δάπεδο σε χώρο γραφείων"
+              >
+            </a>
+
+            <div class="article-meta">
+              <span>Technical</span>
+              <span class="separator"></span>
+              <time datetime="2026-06-29">29 Ιουνίου 2026</time>
+            </div>
+
+            <h2 class="article-card-title">
+              <a href="article-acoustic-flooring.html">
+                Ακουστική άνεση: ο ρόλος του δαπέδου στον σχεδιασμό.
+              </a>
+            </h2>
+
+            <p class="article-card-description">
+              Βασικές έννοιες και τεχνικά κριτήρια για χώρους εργασίας,
+              εκπαίδευσης και φιλοξενίας.
+            </p>
+
+            <a class="article-link" href="article-acoustic-flooring.html">
+              Περισσότερα
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </article>
+
+          <article class="article-card" data-category="sustainability">
+
+            <a
+              class="article-card-media"
+              href="article-circular-materials.html"
+            >
+              <span class="article-number">04</span>
+
+              <img
+                src="images/blog-4.jpg"
+                alt="Δείγματα βιώσιμων αρχιτεκτονικών υλικών"
+              >
+            </a>
+
+            <div class="article-meta">
+              <span>Sustainability</span>
+              <span class="separator"></span>
+              <time datetime="2026-06-18">18 Ιουνίου 2026</time>
+            </div>
+
+            <h2 class="article-card-title">
+              <a href="article-circular-materials.html">
+                Κυκλική οικονομία και υλικά: από τη θεωρία στην εφαρμογή.
+              </a>
+            </h2>
+
+            <p class="article-card-description">
+              Πώς η διάρκεια ζωής, η ανακύκλωση και η επαναχρησιμοποίηση
+              επηρεάζουν την προδιαγραφή.
+            </p>
+
+            <a class="article-link" href="article-circular-materials.html">
+              Περισσότερα
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </article>
+
+          <article class="article-card" data-category="flooring">
+
+            <a
+              class="article-card-media"
+              href="article-entrance-systems.html"
+            >
+              <span class="article-number">05</span>
+
+              <img
+                src="images/blog-5.jpg"
+                alt="Σύστημα δαπέδου εισόδου επαγγελματικού κτιρίου"
+              >
+            </a>
+
+            <div class="article-meta">
+              <span>Flooring</span>
+              <span class="separator"></span>
+              <time datetime="2026-06-10">10 Ιουνίου 2026</time>
+            </div>
+
+            <h2 class="article-card-title">
+              <a href="article-entrance-systems.html">
+                Entrance systems: η πρώτη γραμμή προστασίας ενός κτιρίου.
+              </a>
+            </h2>
+
+            <p class="article-card-description">
+              Γιατί η σωστή ζώνη εισόδου μειώνει τη φθορά, τη ρύπανση
+              και το κόστος συντήρησης.
+            </p>
+
+            <a class="article-link" href="article-entrance-systems.html">
+              Περισσότερα
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </article>
+
+          <article class="article-card" data-category="design">
+
+            <a
+              class="article-card-media"
+              href="article-workplace-design.html"
+            >
+              <span class="article-number">06</span>
+
+              <img
+                src="images/blog-6.jpg"
+                alt="Σύγχρονος ευέλικτος χώρος εργασίας"
+              >
+            </a>
+
+            <div class="article-meta">
+              <span>Design</span>
+              <span class="separator"></span>
+              <time datetime="2026-05-30">30 Μαΐου 2026</time>
+            </div>
+
+            <h2 class="article-card-title">
+              <a href="article-workplace-design.html">
+                Workplace design: υλικά που υποστηρίζουν την ευελιξία.
+              </a>
+            </h2>
+
+            <p class="article-card-description">
+              Επιλογές που προσαρμόζονται σε αλλαγές διάταξης, χρήσης
+              και λειτουργικών αναγκών.
+            </p>
+
+            <a class="article-link" href="article-workplace-design.html">
+              Περισσότερα
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+
+    <section class="blog-newsletter">
+      <div class="container newsletter-inner">
+
+        <div>
+          <p class="blog-eyebrow">MATERIA HUB JOURNAL</p>
+
+          <h2 class="newsletter-title">
+            Νέες ιδέες.<br>
+            <span>Στο inbox σας.</span>
+          </h2>
+        </div>
+
+        <form
+          class="newsletter-form"
+          action="#"
+          method="post"
+        >
+          <label class="sr-only" for="newsletter-email">
+            Διεύθυνση email
+          </label>
+
+          <input
+            id="newsletter-email"
+            name="email"
+            type="email"
+            placeholder="Το email σας"
+            autocomplete="email"
+            required
+          >
+
+          <button type="submit" aria-label="Εγγραφή στο newsletter">
+            ↗
+          </button>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    const filterButtons =
+      document.querySelectorAll("[data-filter]");
+
+    const articleCards =
+      document.querySelectorAll(".article-card[data-category]");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const selectedCategory = button.dataset.filter;
+
+        filterButtons.forEach(item => {
+          item.classList.remove("is-active");
+        });
+
+        button.classList.add("is-active");
+
+        articleCards.forEach(card => {
+          const shouldShow =
+            selectedCategory === "all" ||
+            card.dataset.category === selectedCategory;
+
+          card.hidden = !shouldShow;
+        });
+      });
+    });
+  </script>
+<script defer src="cookies.js"></script>
+</body>
+</html>
