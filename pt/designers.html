@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="pt-PT">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <meta
+    name="description"
+    content="Materia Hub — Arquitetura e Design"
+  />
+
+  <title>Arquitetura e Design | Materia Hub</title>
+
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- MAIN CSS -->
+
+  <link rel="stylesheet" href="/styles.css" />
+
+
+  <!-- SITE SCRIPTS -->
+
+  <script defer src="/header.js"></script>
+
+  <script defer src="/footer.js"></script>
+
+  <script defer src="/script.js"></script>
+
+
+  <style>
+
+
+
+    
+
+    /* =====================================================
+       ARCHITECTURE & DESIGN
+       ===================================================== */
+
+
+    .architecture-hero {
+
+      min-height: 58vh;
+
+      display: flex;
+
+      align-items: center;
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, .50),
+          rgba(0, 0, 0, .78)
+        ),
+        url("/images/hero.jpg");
+
+      background-size: cover;
+
+      background-position: center;
+
+      background-repeat: no-repeat;
+
+      background-attachment: scroll, fixed;
+
+    }
+
+
+
+    .architecture-hero .eyebrow {
+
+      color: #fff;
+
+    }
+
+
+
+    .architecture-content {
+
+      position: relative;
+
+      z-index: 2;
+
+      padding-top: 130px;
+
+      padding-bottom: 110px;
+
+    }
+
+
+
+    .architecture-title {
+
+      font-family: Montserrat, sans-serif;
+
+      font-size: clamp(46px, 6.5vw, 86px);
+
+      line-height: 1.02;
+
+      letter-spacing: -0.035em;
+
+      color: white;
+
+      margin: 25px 0;
+
+    }
+
+
+
+    .architecture-title span {
+
+      color: #8C131B;
+
+    }
+
+
+
+    .architecture-copy {
+
+      max-width: 690px;
+
+      color: rgba(255, 255, 255, .82);
+
+      font-size: 20px;
+
+      line-height: 1.75;
+
+      margin: 0;
+
+    }
+
+
+
+
+
+    /* =====================================================
+       INTRO
+       ===================================================== */
+
+
+    .architecture-section {
+
+      background: #f7f6f2;
+
+      padding: 120px 0 150px;
+
+    }
+
+
+
+    .architecture-info {
+
+      display: grid;
+
+      grid-template-columns: 0.85fr 1.15fr;
+
+      gap: 100px;
+
+      align-items: start;
+
+      margin-bottom: 110px;
+
+    }
+
+
+
+    .architecture-info h2 {
+
+      font-family: Montserrat, sans-serif;
+
+      font-size: clamp(38px, 4.5vw, 58px);
+
+      line-height: 1.08;
+
+      letter-spacing: -0.03em;
+
+      margin: 18px 0 0;
+
+    }
+
+
+
+    .architecture-info > p {
+
+      max-width: 640px;
+
+      font-size: 19px;
+
+      line-height: 1.85;
+
+      color: #555;
+
+      margin: 0;
+
+    }
+
+
+
+
+
+    /* =====================================================
+       MATERIAL LIBRARY HEADER
+       ===================================================== */
+
+
+    .materials-heading {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 50px;
+
+      margin-bottom: 50px;
+
+      padding-top: 30px;
+
+      border-top: 1px solid rgba(0, 0, 0, .12);
+
+    }
+
+
+
+    .materials-heading h3 {
+
+      font-family: Montserrat, sans-serif;
+
+      font-size: clamp(30px, 4vw, 48px);
+
+      letter-spacing: -0.03em;
+
+      line-height: 1.1;
+
+      margin: 12px 0 0;
+
+    }
+
+
+
+    .materials-count {
+
+      font-family: Manrope, sans-serif;
+
+      font-size: 13px;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+
+      color: #777;
+
+      padding-bottom: 6px;
+
+    }
+
+
+
+
+
+    /* =====================================================
+       ASYMMETRICAL MATERIAL GRID
+       ===================================================== */
+
+
+    .material-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(12, 1fr);
+
+      grid-auto-rows: 95px;
+
+      gap: 22px;
+
+    }
+
+
+
+    /* -----------------------------------------
+       BASE BOX
+       ----------------------------------------- */
+
+
+    .material-card {
+
+      position: relative;
+
+      display: block;
+
+      overflow: hidden;
+
+      background: #deddd8;
+
+      text-decoration: none;
+
+      isolation: isolate;
+
+    }
+
+
+
+    /*
+       WHEN ADDING AN IMAGE:
+
+       <a
+         class="material-card material-01"
+         href="your-link.html"
+         style="background-image:url('/images/material-01.jpg');"
+       ></a>
+    */
+
+
+
+/* -----------------------------------------
+   MATERIAL CARD — PREMIUM HOVER
+   ----------------------------------------- */
+
+.material-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+
+  background-color: #deddd8;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  border: 1px solid rgba(0, 0, 0, .08);
+
+  transform: translateY(0) scale(1);
+
+  box-shadow:
+    0 0 0 rgba(0, 0, 0, 0);
+
+  transition:
+    transform .6s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .6s cubic-bezier(.16, 1, .3, 1),
+    border-color .45s ease,
+    background-size .8s cubic-bezier(.16, 1, .3, 1),
+    background-position .8s cubic-bezier(.16, 1, .3, 1);
+}
+
+
+/* -----------------------------------------
+   COMPANY / SOLUTION IDENTITY
+   ----------------------------------------- */
+
+.material-company,
+.material-title {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.material-company {
+  top: 22px;
+  left: 22px;
+
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+
+  color: #fff;
+  background: rgba(18, 18, 18, .58);
+  border: 1px solid rgba(255, 255, 255, .30);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+
+  transition:
+    background-color .35s ease,
+    border-color .35s ease,
+    transform .55s cubic-bezier(.16, 1, .3, 1);
+}
+
+.material-title {
+  left: 24px;
+  bottom: 22px;
+
+  max-width: min(72%, 420px);
+
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: clamp(16px, 1.7vw, 24px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -.025em;
+
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .42);
+
+  opacity: .96;
+  transform: translateY(0);
+
+  transition:
+    opacity .35s ease,
+    transform .55s cubic-bezier(.16, 1, .3, 1);
+}
+
+.material-card:hover .material-company,
+.material-card:focus-visible .material-company {
+  background: rgba(140, 19, 27, .94);
+  border-color: rgba(255, 255, 255, .42);
+  transform: translateY(-2px);
+}
+
+.material-card:hover .material-title,
+.material-card:focus-visible .material-title {
+  transform: translateY(-4px);
+}
+
+/* Dark / wine overlay */
+
+.material-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 20%,
+      rgba(0, 0, 0, 0.12) 55%,
+      rgba(18, 7, 8, 0.72) 100%
+    );
+
+  opacity: .24;
+
+  transition:
+    opacity .55s ease;
+
+  pointer-events: none;
+}
+
+
+/* EXPLORE label */
+
+.material-card::after {
+content: "EXPLORAR COLEÇÃO  ↗";
+
+  position: absolute;
+
+  right: 24px;
+  bottom: 22px;
+
+  z-index: 2;
+
+  padding: 11px 15px;
+
+  color: #fff;
+
+  background: rgba(140, 19, 27, .92);
+
+  border: 1px solid rgba(255, 255, 255, .28);
+
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  transform:
+    translateY(14px)
+    translateX(6px);
+
+  transition:
+    opacity .45s ease,
+    transform .55s cubic-bezier(.16, 1, .3, 1),
+    background-color .35s ease;
+
+  pointer-events: none;
+}
+
+
+/* -----------------------------------------
+   HOVER
+   ----------------------------------------- */
+
+.material-card:hover {
+  z-index: 5;
+
+  transform:
+    translateY(-7px)
+    scale(1.012);
+
+  border-color: rgba(140, 19, 27, .55);
+
+  background-size: 106%;
+
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, .18),
+    0 8px 20px rgba(0, 0, 0, .08);
+}
+
+
+.material-card:hover::before {
+  opacity: 1;
+}
+
+
+.material-card:hover::after {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    translateX(0);
+}
+
+
+/* -----------------------------------------
+   KEYBOARD FOCUS
+   ----------------------------------------- */
+
+.material-card:focus-visible {
+  outline: 2px solid #8C131B;
+  outline-offset: 5px;
+
+  z-index: 5;
+
+  transform:
+    translateY(-7px)
+    scale(1.012);
+
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, .18);
+}
+
+
+.material-card:focus-visible::before,
+.material-card:focus-visible::after {
+  opacity: 1;
+}
+
+
+.material-card:focus-visible::after {
+  transform:
+    translateY(0)
+    translateX(0);
+}
+
+
+/* -----------------------------------------
+   LABEL RESPONSIVE TUNING
+   ----------------------------------------- */
+
+@media (max-width: 768px) {
+  .material-company {
+    top: 14px;
+    left: 14px;
+    min-height: 29px;
+    padding: 0 10px;
+    font-size: 9px;
+  }
+
+  .material-title {
+    left: 16px;
+    bottom: 16px;
+    max-width: 70%;
+    font-size: clamp(16px, 5vw, 21px);
+  }
+}
+
+/* -----------------------------------------
+   TOUCH DEVICES
+   ----------------------------------------- */
+
+@media (hover: none) {
+
+  .material-card::before {
+    opacity: .12;
+  }
+
+  .material-card::after {
+    top: 14px;
+    right: 14px;
+    bottom: auto;
+
+    padding: 9px 12px;
+
+    font-size: 9px;
+
+    opacity: .88;
+
+    transform: none;
+  }
+
+}
+
+
+/* -----------------------------------------
+   REDUCED MOTION
+   ----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .material-card,
+  .material-card::before,
+  .material-card::after {
+    transition: none;
+  }
+
+  .material-card:hover,
+  .material-card:focus-visible {
+    transform: none;
+  }
+
+}
+
+
+
+
+    /* =====================================================
+       18 BOXES
+       different sizes for an editorial / asymmetric look
+       ===================================================== */
+
+
+    /* 01 - large portrait */
+
+    .material-01 {
+
+      grid-column: span 5;
+
+      grid-row: span 6;
+
+    }
+
+
+
+    /* 02 - landscape */
+
+    .material-02 {
+
+      grid-column: span 7;
+
+      grid-row: span 4;
+
+    }
+
+
+
+    /* 03 */
+
+    .material-03 {
+
+      grid-column: span 3;
+
+      grid-row: span 4;
+
+    }
+
+
+
+    /* 04 */
+
+    .material-04 {
+
+      grid-column: span 4;
+
+      grid-row: span 5;
+
+    }
+
+
+
+    /* 05 - wide */
+
+    .material-05 {
+
+      grid-column: span 5;
+
+      grid-row: span 3;
+
+    }
+
+
+
+    /* 06 */
+
+    .material-06 {
+
+      grid-column: span 4;
+
+      grid-row: span 5;
+
+    }
+
+
+
+    /* 07 - large */
+
+    .material-07 {
+
+      grid-column: span 8;
+
+      grid-row: span 6;
+
+    }
+
+
+
+    /* 08 */
+
+    .material-08 {
+
+      grid-column: span 4;
+
+      grid-row: span 4;
+
+    }
+
+
+
+    /* 09 */
+
+    .material-09 {
+
+      grid-column: span 5;
+
+      grid-row: span 5;
+
+    }
+
+
+
+    /* 10 */
+
+    .material-10 {
+
+      grid-column: span 3;
+
+      grid-row: span 3;
+
+    }
+
+
+
+    /* 11 */
+
+    .material-11 {
+
+      grid-column: span 4;
+
+      grid-row: span 5;
+
+    }
+
+
+
+    /* 12 - wide */
+
+    .material-12 {
+
+      grid-column: span 8;
+
+      grid-row: span 4;
+
+    }
+
+
+
+    /* 13 */
+
+    .material-13 {
+
+      grid-column: span 4;
+
+      grid-row: span 6;
+
+    }
+
+
+
+    /* 14 */
+
+    .material-14 {
+
+      grid-column: span 5;
+
+      grid-row: span 4;
+
+    }
+
+
+
+    /* 15 */
+
+    .material-15 {
+
+      grid-column: span 3;
+
+      grid-row: span 4;
+
+    }
+
+
+
+    /* 16 - closing landscape */
+
+    .material-16 {
+
+      grid-column: span 8;
+
+      grid-row: span 5;
+
+    }
+
+
+
+
+
+    /* 17 - RADIAL ROUND: full-width closing card below the grid */
+
+.material-17 {
+  grid-column: span 4;
+  grid-row: span 3;
+}
+
+    /* 18 - ASTER: fills the four-column space beneath DOUBLE STRAIGHT,
+       immediately to the left of VISION PANEL on desktop. */
+
+    .material-18 {
+      grid-column: 1 / span 4;
+      grid-row: 30 / span 4;
+    }
+
+
+
+    /* =====================================================
+       BOTTOM SPACE / CLOSING
+       ===================================================== */
+
+
+    .architecture-closing {
+
+      margin-top: 110px;
+
+      padding-top: 55px;
+
+      border-top: 1px solid rgba(0, 0, 0, .12);
+
+    }
+
+
+
+    .architecture-closing p {
+
+      max-width: 780px;
+
+      font-family: Montserrat, sans-serif;
+
+      font-size: clamp(26px, 3vw, 42px);
+
+      line-height: 1.3;
+
+      letter-spacing: -0.025em;
+
+      margin: 0;
+
+      color: #222;
+
+    }
+
+
+
+    .architecture-closing span {
+
+      color: #8C131B;
+
+    }
+
+
+
+
+
+    /* =====================================================
+       TABLET
+       ===================================================== */
+
+
+    @media (max-width: 1000px) {
+
+
+      .architecture-info {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+      }
+
+
+      .material-grid {
+
+        grid-template-columns: repeat(6, 1fr);
+
+        grid-auto-rows: 90px;
+
+      }
+
+
+      .material-01,
+      .material-07,
+      .material-12,
+      .material-16 {
+
+        grid-column: span 6;
+
+      }
+
+
+      .material-02,
+      .material-05,
+      .material-09,
+      .material-14 {
+
+        grid-column: span 4;
+
+      }
+
+
+      /* Tablet gets a six-column grid; remove desktop-only positioning. */
+      .material-17 {
+        grid-column: span 6;
+      }
+
+      .material-18 {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+      .material-03,
+      .material-04,
+      .material-06,
+      .material-08,
+      .material-10,
+      .material-11,
+      .material-13,
+      .material-15 {
+
+        grid-column: span 2;
+
+      }
+
+    }
+
+
+
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+
+    @media (max-width: 768px) {
+
+
+      .architecture-hero {
+
+        min-height: 65vh;
+
+        background-attachment: scroll, scroll;
+
+      }
+
+
+      .architecture-content {
+
+        padding-top: 110px;
+
+        padding-bottom: 80px;
+
+      }
+
+
+      .architecture-copy {
+
+        font-size: 18px;
+
+      }
+
+
+      .architecture-section {
+
+        padding: 80px 0 100px;
+
+      }
+
+
+      .architecture-info {
+
+        margin-bottom: 75px;
+
+      }
+
+
+      .materials-heading {
+
+        display: block;
+
+        margin-bottom: 30px;
+
+      }
+
+
+      .materials-count {
+
+        margin-top: 20px;
+
+      }
+
+
+      .material-grid {
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        grid-auto-rows: auto;
+
+        gap: 14px;
+
+      }
+
+
+      /*
+         On mobile, all cards become full width,
+         but retain different aspect ratios.
+      */
+
+
+      .material-card {
+
+        grid-column: auto !important;
+
+        grid-row: auto !important;
+
+        min-height: 0;
+
+        aspect-ratio: 4 / 3;
+
+      }
+
+
+      .material-01,
+      .material-04,
+      .material-06,
+      .material-09,
+      .material-11,
+      .material-13 {
+
+        aspect-ratio: 4 / 5;
+
+      }
+
+
+      .material-02,
+      .material-05,
+      .material-07,
+      .material-12,
+      .material-16,
+      .material-17,
+      .material-18 {
+
+        aspect-ratio: 16 / 10;
+
+      }
+
+
+      .architecture-closing {
+
+        margin-top: 75px;
+
+      }
+
+    }
+
+
+  </style>
+
+  <script defer src="/marble-background.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+  <!-- PAGE LOADER -->
+
+  <div class="page-loader" aria-hidden="true">
+    <span></span>
+  </div>
+
+
+
+  <!-- HEADER -->
+
+  <div id="site-header"></div>
+
+
+
+  <main>
+
+
+
+<!-- BLACK HEADER SPACER -->
+
+<section class="designers-top-spacer" aria-hidden="true"></section>
+
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+         ================================================= -->
+
+
+    <section class="architecture-section" data-marble-background>
+<!-- DECORATIVE RED FLOW LINE -->
+
+<div class="architecture-line" aria-hidden="true">
+
+  <svg
+viewBox="0 0 1600 1000"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+
+<path
+  d="
+    M -100 420
+
+    C 120 400,
+      180 520,
+      390 520
+
+    C 590 520,
+      530 430,
+      760 470
+
+    C 970 510,
+      940 620,
+      1150 590
+
+    C 1380 550,
+      1260 430,
+      1700 300
+  "
+/>
+
+
+    <!-- small markers as in the reference -->
+
+    <circle
+      cx="390"
+      cy="700"
+      r="7"
+    />
+
+    <circle
+      cx="1150"
+      cy="820"
+      r="7"
+    />
+
+
+  </svg>
+
+</div>
+
+      <div class="container">
+
+
+
+        <!-- INTRO -->
+
+
+        <div class="architecture-info">
+
+
+          <div>
+
+
+            <p class="eyebrow dark">
+
+              MATERIA HUB
+
+            </p>
+
+
+            <h2>
+
+              Arquitetura
+              <br>
+              e Design
+
+            </h2>
+
+
+          </div>
+
+
+
+          <p>
+
+Descubra materiais, texturas e superfícies que combinam estética, funcionalidade e design contemporâneo. Desde a inspiração inicial até à aplicação final, o Materia Hub é uma referência para arquitetos e designers.
+
+
+
+          </p>
+
+
+        </div>
+
+
+
+
+
+        <!-- =================================================
+             MATERIAL LIBRARY
+             ================================================= -->
+
+
+        <div class="materials-heading">
+
+
+          <div>
+
+            <p class="eyebrow dark">
+
+              BIBLIOTECA DE MATERIAIS
+
+            </p>
+
+
+            <h3>
+
+              Explore os materiais.
+
+            </h3>
+
+          </div>
+
+
+          <div class="materials-count">
+
+            18 COLEÇÕES
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+        <!-- =================================================
+             ASYMMETRICAL GRID
+             18 COLEÇÕES
+             ================================================= -->
+
+
+        <div class="material-grid">
+
+
+          <!-- 01 -->
+
+          <a
+            class="material-card material-01"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?twisti&amp;marca=1"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TWISTI — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/twisti.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">TWISTI</span>
+          </a>
+
+
+          <!-- 02 -->
+
+          <a
+            class="material-card material-02"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?sibu-design&amp;marca=3"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SIBU DESIGN — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/sibu.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">SIBU DESIGN</span>
+          </a>
+
+
+          <!-- 03 -->
+
+          <a
+            class="material-card material-03"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?coco-3d-panel&amp;marca=10"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="COCO 3D PANEL — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/coco.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">COCO 3D PANEL</span>
+          </a>
+
+
+          <!-- 04 -->
+
+          <a
+            class="material-card material-04"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?compact-x&amp;marca=8"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="COMPACT-X — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/compactx.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">COMPACT-X</span>
+          </a>
+
+
+          <!-- 05 -->
+
+          <a
+            class="material-card material-05"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?exolon&amp;marca=14"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="EXOLON — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/exolon.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">EXOLON</span>
+          </a>
+
+
+          <!-- 06 -->
+
+          <a
+            class="material-card material-06"
+            href="https://www.forsolid.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="FORSOLID — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/forsolid.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">FORSOLID</span>
+          </a>
+
+
+          <!-- 07 -->
+
+          <a
+            class="material-card material-07"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?leeuwenburgh-lignapal&amp;marca=29"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LEEUWENBURGH LIGNAPAL — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/leeuwenburgh.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">LEEUWENBURGH LIGNAPAL</span>
+          </a>
+
+
+          <!-- 08 -->
+
+          <a
+            class="material-card material-08"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?metal-mesh&amp;marca=11"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="METAL MESH — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/metalmesh.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">METAL MESH</span>
+          </a>
+
+
+          <!-- 09 -->
+
+          <a
+            class="material-card material-09"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?nature-panel&amp;marca=6"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="NATURE PANEL — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/naturepanel.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">NATURE PANEL</span>
+          </a>
+
+
+          <!-- 10 -->
+
+          <a
+            class="material-card material-10"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?organoid&amp;marca=12"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="ORGANOID — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/organoid.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">ORGANOID</span>
+          </a>
+
+
+          <!-- 11 -->
+
+          <a
+            class="material-card material-11"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?panel-sound&amp;marca=18"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="PANEL SOUND — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/panelsound.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">PANEL SOUND</span>
+          </a>
+
+
+          <!-- 12 -->
+
+          <a
+            class="material-card material-12"
+            href="https://www.tecnodeck.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TECNODECK — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/tecnodeck.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">TECNODECK</span>
+          </a>
+
+
+<!-- 13 -->
+
+<a
+  class="material-card material-13"
+  href="https://www.mitera.pt/produto/235/double-straight"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Double Straight — Painel acústico (abre num novo separador)"
+  style="background-image:url('/images/designers/doublestraight.webp');"
+>
+  <span class="material-company">PARCEIRO MATERIA</span>
+  <span class="material-title">DOUBLE STRAIGHT</span>
+</a>
+
+
+          <!-- 14 -->
+
+          <a
+            class="material-card material-14"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?the-smartstone&amp;marca=4"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="THE SMARTSTONE — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/smartstone.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">THE SMARTSTONE</span>
+          </a>
+
+
+          <!-- 15 -->
+
+          <a
+            class="material-card material-15"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?vertimais&amp;marca=2"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="VERTIMAIS — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/vertimais.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">VERTIMAIS</span>
+          </a>
+
+
+          <!-- 18 - ASTER (desktop: left of VISION PANEL) -->
+
+          <a
+            class="material-card material-18"
+            href="https://www.mitera.pt/produto/223/aster-medium"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="ASTER — Iluminação acústica (abre num novo separador)"
+            style="background-image:url('/images/designers/astermedium.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">ASTER</span>
+          </a>
+
+          <!-- 16 -->
+
+          <a
+            class="material-card material-16"
+            href="https://www.mitera.pt/produtos-de-arquitectura-e-design?vision-panel&amp;marca=9"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="VISION PANEL — Coleção de materiais (abre num novo separador)"
+            style="background-image:url('/images/designers/visionpanel.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">VISION PANEL</span>
+          </a>
+
+
+          <!-- 17 -->
+
+          <a
+            class="material-card material-17"
+            href="https://www.mitera.pt/produto/232/radial-round-1500"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="RADIAL ROUND — Iluminação acústica (abre num novo separador)"
+            style="background-image:url('/images/designers/radialround1500.webp');"
+          >
+            <span class="material-company">PARCEIRO MATERIA</span>
+            <span class="material-title">RADIAL ROUND</span>
+          </a>
+
+
+        </div>
+
+
+
+
+
+        <!-- =================================================
+             CLOSING TEXT
+             ================================================= -->
+
+
+        <div class="architecture-closing">
+
+
+          <p>
+
+Os materiais são mais do que simples superfícies. Definem o <span>caráter de um espaço.</span>
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <div id="site-footer"></div>
+
+
+
+  <!-- COOKIES -->
+
+  <script defer src="/cookies.js"></script>
+
+
+
+  <!-- CURSOR EFFECT -->
+
+
+
+
+</body>
+
+</html>

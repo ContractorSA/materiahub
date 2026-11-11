@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="pt-PT">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+<link rel="icon" type="image/png" href="/favicon.png">
+  <meta
+    name="description"
+    content="Explore as soluções de pavimentos Forbo com o Visualizador de Pavimentos da Materia Hub. Experimente espaços, cores, texturas e diferentes aplicações de pavimento."
+  >
+
+  <meta name="robots" content="index,follow">
+
+  <title>Visualizador de Pavimentos | Materia Hub</title>
+
+
+  <!-- SEO / LANGUAGE -->
+
+  <link
+    rel="canonical"
+    href="https://materiahub.gr/pt/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="el"
+    href="https://materiahub.gr/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://materiahub.gr/en/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="pt-PT"
+    href="https://materiahub.gr/pt/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://materiahub.gr/floorvisualizer.html"
+  >
+
+
+  <!-- FONTS -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- GLOBAL STYLES -->
+
+  <link
+    rel="stylesheet"
+    href="/styles.css"
+  >
+
+
+  <!-- GLOBAL SCRIPTS -->
+
+  <script defer src="/header.js"></script>
+  <script defer src="/footer.js"></script>
+  <script defer src="/script.js"></script>
+
+
+  <style>
+
+    /* ======================================================
+       FLOOR VISUALIZER PAGE
+    ====================================================== */
+
+    .visualizer-hero {
+      min-height: 55vh;
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, .55),
+          rgba(0, 0, 0, .75)
+        ),
+        url("/images/hero.jpg");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll, fixed;
+    }
+
+
+    .visualizer-hero .eyebrow {
+      color: #fff;
+    }
+
+
+    .visualizer-content {
+      position: relative;
+      z-index: 2;
+
+      padding-top: 120px;
+      padding-bottom: 100px;
+    }
+
+
+    .visualizer-title {
+      margin: 25px 0;
+
+      color: #fff;
+
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 500;
+
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+
+    .visualizer-title span {
+      color: #8c131b;
+    }
+
+
+    .visualizer-copy {
+      max-width: 650px;
+
+      margin: 0;
+
+      color: rgba(255, 255, 255, .8);
+
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+
+    /* ======================================================
+       VISUALIZER SECTION
+    ====================================================== */
+
+    .visualizer-section {
+      padding: 100px 0;
+
+      background: #f7f6f2;
+    }
+
+
+    .visualizer-info {
+      margin-bottom: 50px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 40px;
+    }
+
+
+    .visualizer-info h2 {
+      margin: 0;
+
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: 42px;
+      font-weight: 500;
+
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
+
+
+    .visualizer-info > p {
+      max-width: 550px;
+
+      margin: 0;
+
+      color: #555;
+
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+
+    /* ======================================================
+       FORBO IFRAME
+    ====================================================== */
+
+    .visualizer-box {
+      overflow: hidden;
+
+      background: #fff;
+
+      border: 1px solid rgba(0, 0, 0, .08);
+
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, .12);
+    }
+
+
+    .visualizer-box iframe {
+      width: 100%;
+      height: 850px;
+
+      display: block;
+
+      border: 0;
+    }
+
+
+    /* ======================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 768px) {
+
+      .visualizer-hero {
+        background-attachment: scroll, scroll;
+      }
+
+
+      .visualizer-copy {
+        font-size: 17px;
+      }
+
+
+      .visualizer-box iframe {
+        height: 650px;
+      }
+
+
+      .visualizer-info {
+        display: block;
+      }
+
+
+      .visualizer-info h2 {
+        font-size: 32px;
+      }
+
+
+      .visualizer-info > p {
+        margin-top: 25px;
+
+        font-size: 16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- PAGE LOADER -->
+
+  <div
+    class="page-loader"
+    aria-hidden="true"
+  >
+    <span></span>
+  </div>
+
+
+  <!-- GLOBAL HEADER -->
+
+  <div id="site-header"></div>
+
+
+  <!-- ======================================================
+       MAIN
+  ======================================================= -->
+
+  <main id="top">
+
+
+    <!-- ====================================================
+         HERO
+    ===================================================== -->
+
+    <section
+      class="visualizer-hero"
+      aria-labelledby="visualizer-title"
+    >
+
+      <div class="container visualizer-content">
+
+
+        <p class="eyebrow">
+          FORBO FLOORING SYSTEMS
+        </p>
+
+
+        <h1
+          class="visualizer-title"
+          id="visualizer-title"
+        >
+          Visualize o seu
+          <br>
+
+          <span>
+            pavimento ideal.
+          </span>
+        </h1>
+
+
+        <p class="visualizer-copy">
+          Explore as soluções de pavimentos Forbo através do visualizador
+          interativo. Experimente texturas, cores e aplicações
+          para o seu próximo projeto.
+        </p>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================
+         INTERACTIVE VISUALIZER
+    ===================================================== -->
+
+    <section class="visualizer-section">
+
+      <div class="container">
+
+
+        <div class="visualizer-info">
+
+
+          <div>
+
+            <p class="eyebrow dark">
+              FERRAMENTA INTERATIVA
+            </p>
+
+            <h2>
+              Visualizador de Pavimentos
+            </h2>
+
+          </div>
+
+
+          <p>
+            Selecione um espaço, um material e uma direção de design.
+            Crie uma referência visual inicial antes de finalizar
+            a seleção dos materiais.
+          </p>
+
+
+        </div>
+
+
+        <div class="visualizer-box">
+
+          <iframe
+            src="https://forbo-business.esignserver3.com/gallery.do"
+            title="Forbo Visualizador de Pavimentos"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- GLOBAL FOOTER -->
+
+  <div id="site-footer"></div>
+
+
+  <!-- COOKIE CONSENT -->
+
+  <script defer src="/cookies.js"></script>
+
+
+
+
+
+  <!-- ======================================================
+       PORTUGUESE COMPATIBILITY
+       Translates the shared footer + cookie banner
+       when this page runs inside /pt/
+  ======================================================= -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* ====================================================
+         FOOTER
+      ===================================================== */
+
+      const footer =
+        document.querySelector("#site-footer");
+
+
+      if (footer) {
+
+        /* Footer logo */
+
+        const footerLogo =
+          footer.querySelector(".footer-logo");
+
+        if (footerLogo) {
+          footerLogo.src =
+            "/images/materia-hub-footer-logo.png";
+        }
+
+
+        /* Footer brand */
+
+        const footerBrand =
+          footer.querySelector(".footer-brand");
+
+        if (footerBrand) {
+          footerBrand.href = "/pt/#top";
+
+          footerBrand.setAttribute(
+            "aria-label",
+            "Materia Hub - Início"
+          );
+        }
+
+
+        /* Navigation column */
+
+        const footerColumns =
+          footer.querySelectorAll(
+            ".footer-columns > div"
+          );
+
+
+        if (footerColumns[0]) {
+
+          const heading =
+            footerColumns[0].querySelector("h3");
+
+          const links =
+            footerColumns[0].querySelectorAll("a");
+
+          if (heading) {
+            heading.textContent = "Navegação";
+          }
+
+          if (links[0]) {
+            links[0].textContent = "Empresa";
+            links[0].href = "/pt/#about";
+          }
+
+          if (links[1]) {
+            links[1].textContent = "Soluções";
+            links[1].href = "/pt/#solutions";
+          }
+
+          if (links[2]) {
+            links[2].textContent = "Projetos";
+            links[2].href = "/pt/#project";
+          }
+
+        }
+
+
+        /* Support column */
+
+        if (footerColumns[1]) {
+
+          const heading =
+            footerColumns[1].querySelector("h3");
+
+          const supportLinks =
+            footerColumns[1].querySelectorAll("a");
+
+          if (heading) {
+            heading.textContent = "Apoio";
+          }
+
+          if (supportLinks[0]) {
+            supportLinks[0].textContent = "Especificações";
+          }
+
+          if (supportLinks[1]) {
+            supportLinks[1].textContent = "Amostras";
+          }
+
+          if (supportLinks[2]) {
+            supportLinks[2].textContent = "Engenharia de valor";
+          }
+
+          supportLinks.forEach(link => {
+            link.href = "/pt/#support";
+          });
+
+        }
+
+
+        /* Contact column */
+
+        if (footerColumns[2]) {
+
+          const heading =
+            footerColumns[2].querySelector("h3");
+
+          const country =
+            footerColumns[2].querySelector("p");
+
+          if (heading) {
+            heading.textContent = "Contacto";
+          }
+
+          if (country) {
+            country.textContent = "Grécia";
+          }
+
+        }
+
+
+        /* Legal links */
+
+        const privacyLink =
+          footer.querySelector(
+            'a[href="privacy-policy.html"]'
+          );
+
+        if (privacyLink) {
+          privacyLink.href =
+            "/pt/privacy-policy.html";
+
+          privacyLink.textContent =
+            "Política de Privacidade";
+        }
+
+
+        const termsLink =
+          footer.querySelector(
+            'a[href="terms-of-use.html"]'
+          );
+
+        if (termsLink) {
+          termsLink.href =
+            "/pt/terms-of-use.html";
+
+          termsLink.textContent =
+            "Termos de Utilização";
+        }
+
+
+        const cookieLink =
+          footer.querySelector(
+            'a[href="cookie-policy.html"]'
+          );
+
+        if (cookieLink) {
+          cookieLink.href =
+            "/pt/cookie-policy.html";
+
+          cookieLink.textContent =
+            "Cookies";
+        }
+
+
+        const backToTop =
+          Array.from(
+            footer.querySelectorAll(
+              ".footer-bottom-right a"
+            )
+          ).find(link =>
+            link.getAttribute("href") === "#top"
+          );
+
+
+        if (backToTop) {
+          backToTop.href = "#top";
+          backToTop.textContent =
+            "Voltar ao topo ↑";
+        }
+
+
+        /* Legal company line */
+
+        const legalText =
+          footer.querySelector(
+            ".footer-legal p"
+          );
+
+
+        if (legalText) {
+          legalText.textContent =
+            "Materia Hub ΙΚΕ • N.º G.E.MI.: 123456789000 • Sede social: Atenas, Grécia";
+        }
+
+      }
+
+
+      /* ====================================================
+         COOKIE BANNER
+      ===================================================== */
+
+      const translateCookieBanner = () => {
+
+        const banner =
+          document.querySelector(
+            ".mh-cookie-banner"
+          );
+
+
+        if (!banner) {
+          return;
+        }
+
+
+        const title =
+          banner.querySelector(
+            "#mh-cookie-title"
+          );
+
+
+        if (title) {
+          title.textContent =
+            "Definições de cookies";
+        }
+
+
+        const description =
+          banner.querySelector(
+            "#mh-cookie-description"
+          );
+
+
+        if (description) {
+          description.textContent =
+            "Utilizamos tecnologias de armazenamento essenciais e, com o seu consentimento, o Google Analytics 4 para estatísticas de utilização do website.";
+        }
+
+
+        const acceptButton =
+          banner.querySelector(
+            ".mh-cookie-accept"
+          );
+
+
+        if (acceptButton) {
+          acceptButton.textContent =
+            "Aceitar cookies analíticos";
+        }
+
+
+        const rejectButton =
+          banner.querySelector(
+            ".mh-cookie-reject"
+          );
+
+
+        if (rejectButton) {
+          rejectButton.textContent =
+            "Apenas essenciais";
+        }
+
+
+        const infoLink =
+          banner.querySelector(
+            ".mh-cookie-info"
+          );
+
+
+        if (infoLink) {
+          infoLink.textContent =
+            "Política de Cookies";
+
+          infoLink.href =
+            "/pt/cookie-policy.html";
+        }
+
+      };
+
+
+      /*
+       * O banner pode já existir quando o DOMContentLoaded
+       * é disparado, por isso traduzimo-lo de imediato.
+       */
+
+      translateCookieBanner();
+
+
+      /*
+       * Também observamos caso o banner seja aberto mais tarde.
+       */
+
+      const cookieObserver =
+        new MutationObserver(() => {
+          translateCookieBanner();
+        });
+
+
+      cookieObserver.observe(
+        document.body,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+<link rel="icon" type="image/png" href="/favicon.png">
+  <meta
+    name="description"
+    content="Explore Forbo flooring solutions with the Materia Hub Floor Visualizer. Experiment with spaces, colours, textures and flooring applications."
+  >
+
+  <meta name="robots" content="index,follow">
+
+  <title>Floor Visualizer | Materia Hub</title>
+
+
+  <!-- SEO / LANGUAGE -->
+
+  <link
+    rel="canonical"
+    href="https://materiahub.gr/en/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="el"
+    href="https://materiahub.gr/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://materiahub.gr/en/floorvisualizer.html"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href="https://materiahub.gr/floorvisualizer.html"
+  >
+
+
+  <!-- FONTS -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- GLOBAL STYLES -->
+
+  <link
+    rel="stylesheet"
+    href="/styles.css"
+  >
+
+
+  <!-- GLOBAL SCRIPTS -->
+
+  <script defer src="/header.js"></script>
+  <script defer src="/footer.js"></script>
+  <script defer src="/script.js"></script>
+
+
+  <style>
+
+    /* ======================================================
+       FLOOR VISUALIZER PAGE
+    ====================================================== */
+
+    .visualizer-hero {
+      min-height: 55vh;
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, .55),
+          rgba(0, 0, 0, .75)
+        ),
+        url("/images/hero.jpg");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll, fixed;
+    }
+
+
+    .visualizer-hero .eyebrow {
+      color: #fff;
+    }
+
+
+    .visualizer-content {
+      position: relative;
+      z-index: 2;
+
+      padding-top: 120px;
+      padding-bottom: 100px;
+    }
+
+
+    .visualizer-title {
+      margin: 25px 0;
+
+      color: #fff;
+
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: clamp(42px, 6vw, 78px);
+      font-weight: 500;
+
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+
+    .visualizer-title span {
+      color: #8c131b;
+    }
+
+
+    .visualizer-copy {
+      max-width: 650px;
+
+      margin: 0;
+
+      color: rgba(255, 255, 255, .8);
+
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+
+    /* ======================================================
+       VISUALIZER SECTION
+    ====================================================== */
+
+    .visualizer-section {
+      padding: 100px 0;
+
+      background: #f7f6f2;
+    }
+
+
+    .visualizer-info {
+      margin-bottom: 50px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 40px;
+    }
+
+
+    .visualizer-info h2 {
+      margin: 0;
+
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: 42px;
+      font-weight: 500;
+
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
+
+
+    .visualizer-info > p {
+      max-width: 550px;
+
+      margin: 0;
+
+      color: #555;
+
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+
+    /* ======================================================
+       FORBO IFRAME
+    ====================================================== */
+
+    .visualizer-box {
+      overflow: hidden;
+
+      background: #fff;
+
+      border: 1px solid rgba(0, 0, 0, .08);
+
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, .12);
+    }
+
+
+    .visualizer-box iframe {
+      width: 100%;
+      height: 850px;
+
+      display: block;
+
+      border: 0;
+    }
+
+
+    /* ======================================================
+       RESPONSIVE
+    ====================================================== */
+
+    @media (max-width: 768px) {
+
+      .visualizer-hero {
+        background-attachment: scroll, scroll;
+      }
+
+
+      .visualizer-copy {
+        font-size: 17px;
+      }
+
+
+      .visualizer-box iframe {
+        height: 650px;
+      }
+
+
+      .visualizer-info {
+        display: block;
+      }
+
+
+      .visualizer-info h2 {
+        font-size: 32px;
+      }
+
+
+      .visualizer-info > p {
+        margin-top: 25px;
+
+        font-size: 16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- PAGE LOADER -->
+
+  <div
+    class="page-loader"
+    aria-hidden="true"
+  >
+    <span></span>
+  </div>
+
+
+  <!-- GLOBAL HEADER -->
+
+  <div id="site-header"></div>
+
+
+  <!-- ======================================================
+       MAIN
+  ======================================================= -->
+
+  <main id="top">
+
+
+    <!-- ====================================================
+         HERO
+    ===================================================== -->
+
+    <section
+      class="visualizer-hero"
+      aria-labelledby="visualizer-title"
+    >
+
+      <div class="container visualizer-content">
+
+
+        <p class="eyebrow">
+          FORBO FLOORING SYSTEMS
+        </p>
+
+
+        <h1
+          class="visualizer-title"
+          id="visualizer-title"
+        >
+          Visualize your
+          <br>
+
+          <span>
+            perfect floor.
+          </span>
+        </h1>
+
+
+        <p class="visualizer-copy">
+          Explore Forbo flooring solutions through the interactive
+          visualizer. Experiment with textures, colours and applications
+          for your next project.
+        </p>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================
+         INTERACTIVE VISUALIZER
+    ===================================================== -->
+
+    <section class="visualizer-section">
+
+      <div class="container">
+
+
+        <div class="visualizer-info">
+
+
+          <div>
+
+            <p class="eyebrow dark">
+              INTERACTIVE TOOL
+            </p>
+
+            <h2>
+              Floor Visualizer
+            </h2>
+
+          </div>
+
+
+          <p>
+            Select a space, material and design direction.
+            Create an initial visual reference before finalising
+            your material selection.
+          </p>
+
+
+        </div>
+
+
+        <div class="visualizer-box">
+
+          <iframe
+            src="https://forbo-business.esignserver3.com/gallery.do"
+            title="Forbo Floor Visualizer"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- GLOBAL FOOTER -->
+
+  <div id="site-footer"></div>
+
+
+  <!-- COOKIE CONSENT -->
+
+  <script defer src="/cookies.js"></script>
+
+
+
+
+
+  <!-- ======================================================
+       ENGLISH COMPATIBILITY
+       Translates the shared footer + cookie banner
+       when this page runs inside /en/
+  ======================================================= -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* ====================================================
+         FOOTER
+      ===================================================== */
+
+      const footer =
+        document.querySelector("#site-footer");
+
+
+      if (footer) {
+
+        /* Footer logo */
+
+        const footerLogo =
+          footer.querySelector(".footer-logo");
+
+        if (footerLogo) {
+          footerLogo.src =
+            "/images/materia-hub-footer-logo.png";
+        }
+
+
+        /* Footer brand */
+
+        const footerBrand =
+          footer.querySelector(".footer-brand");
+
+        if (footerBrand) {
+          footerBrand.href = "/en/#top";
+
+          footerBrand.setAttribute(
+            "aria-label",
+            "Materia Hub - Home"
+          );
+        }
+
+
+        /* Navigation column */
+
+        const footerColumns =
+          footer.querySelectorAll(
+            ".footer-columns > div"
+          );
+
+
+        if (footerColumns[0]) {
+
+          const links =
+            footerColumns[0].querySelectorAll("a");
+
+
+          if (links[0]) {
+            links[0].textContent = "Company";
+            links[0].href = "/en/#about";
+          }
+
+
+          if (links[1]) {
+            links[1].textContent = "Solutions";
+            links[1].href = "/en/#solutions";
+          }
+
+
+          if (links[2]) {
+            links[2].textContent = "Projects";
+            links[2].href = "/en/#project";
+          }
+
+        }
+
+
+        /* Support column */
+
+        if (footerColumns[1]) {
+
+          const supportLinks =
+            footerColumns[1].querySelectorAll("a");
+
+
+          supportLinks.forEach(link => {
+            link.href = "/en/#support";
+          });
+
+        }
+
+
+        /* Legal links */
+
+        const privacyLink =
+          footer.querySelector(
+            'a[href="privacy-policy.html"]'
+          );
+
+        if (privacyLink) {
+          privacyLink.href =
+            "/en/privacy-policy.html";
+
+          privacyLink.textContent =
+            "Privacy Policy";
+        }
+
+
+        const termsLink =
+          footer.querySelector(
+            'a[href="terms-of-use.html"]'
+          );
+
+        if (termsLink) {
+          termsLink.href =
+            "/en/terms-of-use.html";
+
+          termsLink.textContent =
+            "Terms of Use";
+        }
+
+
+        const cookieLink =
+          footer.querySelector(
+            'a[href="cookie-policy.html"]'
+          );
+
+        if (cookieLink) {
+          cookieLink.href =
+            "/en/cookie-policy.html";
+
+          cookieLink.textContent =
+            "Cookies";
+        }
+
+
+        const backToTop =
+          Array.from(
+            footer.querySelectorAll(
+              ".footer-bottom-right a"
+            )
+          ).find(link =>
+            link.textContent
+              .toLowerCase()
+              .includes("back to top")
+          );
+
+
+        if (backToTop) {
+          backToTop.href = "#top";
+          backToTop.textContent =
+            "Back to top ↑";
+        }
+
+
+        /* Legal company line */
+
+        const legalText =
+          footer.querySelector(
+            ".footer-legal p"
+          );
+
+
+        if (legalText) {
+          legalText.textContent =
+            "Materia Hub ΙΚΕ • G.E.MI. No.: 123456789000 • Registered office: Athens, Greece";
+        }
+
+      }
+
+
+      /* ====================================================
+         COOKIE BANNER
+      ===================================================== */
+
+      const translateCookieBanner = () => {
+
+        const banner =
+          document.querySelector(
+            ".mh-cookie-banner"
+          );
+
+
+        if (!banner) {
+          return;
+        }
+
+
+        const title =
+          banner.querySelector(
+            "#mh-cookie-title"
+          );
+
+
+        if (title) {
+          title.textContent =
+            "Cookie settings";
+        }
+
+
+        const description =
+          banner.querySelector(
+            "#mh-cookie-description"
+          );
+
+
+        if (description) {
+          description.textContent =
+            "We use essential storage technologies and, with your consent, Google Analytics 4 for website traffic statistics.";
+        }
+
+
+        const acceptButton =
+          banner.querySelector(
+            ".mh-cookie-accept"
+          );
+
+
+        if (acceptButton) {
+          acceptButton.textContent =
+            "Accept analytics";
+        }
+
+
+        const rejectButton =
+          banner.querySelector(
+            ".mh-cookie-reject"
+          );
+
+
+        if (rejectButton) {
+          rejectButton.textContent =
+            "Essential only";
+        }
+
+
+        const infoLink =
+          banner.querySelector(
+            ".mh-cookie-info"
+          );
+
+
+        if (infoLink) {
+          infoLink.textContent =
+            "Cookie Policy";
+
+          infoLink.href =
+            "/en/cookie-policy.html";
+        }
+
+      };
+
+
+      /*
+       * The banner may already exist when DOMContentLoaded
+       * fires, so translate it immediately.
+       */
+
+      translateCookieBanner();
+
+
+      /*
+       * Also watch for the banner being opened later.
+       */
+
+      const cookieObserver =
+        new MutationObserver(() => {
+          translateCookieBanner();
+        });
+
+
+      cookieObserver.observe(
+        document.body,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>
