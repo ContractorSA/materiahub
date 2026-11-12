@@ -49,10 +49,11 @@ if (footerContainer) {
       privacy: "Πολιτική Απορρήτου",
       terms: "Όροι Χρήσης",
       cookies: "Cookies",
+      cookieSettings: "Ρυθμίσεις cookies",
       backToTop: "Επιστροφή στην κορυφή ↑",
 
       legal:
-        "Materia Hub S.A. • Αρ. Γ.Ε.ΜΗ.: 197351701000 • Έδρα: Αθήνα, Ελλάδα"
+        "Materia Hub S.A. • Αρ. Γ.Ε.ΜΗ.: 197351701000 • Έδρα: Κυβέλης 12, Κηφισιά 14563, Ελλάδα"
     },
 
     en: {
@@ -76,10 +77,11 @@ if (footerContainer) {
       privacy: "Privacy Policy",
       terms: "Terms of Use",
       cookies: "Cookies",
+      cookieSettings: "Cookie settings",
       backToTop: "Back to top ↑",
 
       legal:
-        "Materia Hub S.A. • G.E.MI. No.: 197351701000 • Registered office: Athens, Greece"
+        "Materia Hub S.A. • G.E.MI. No.: 197351701000 • Registered office: 12 Kivelis Str., Kifissia 14563, Greece"
     },
 
     pt: {
@@ -103,10 +105,11 @@ if (footerContainer) {
       privacy: "Política de Privacidade",
       terms: "Termos de Utilização",
       cookies: "Cookies",
+      cookieSettings: "Definições de cookies",
       backToTop: "Voltar ao topo ↑",
 
       legal:
-        "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Atenas, Grécia"
+        "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Rua Kivelis 12, Kifissia 14563, Grécia"
     }
   };
 
@@ -222,12 +225,9 @@ if (footerContainer) {
             ${t.terms}
           </a>
 
-          <a
-            href="${cookieLink}"
-            id="cookieSettings"
-          >
-            ${t.cookies}
-          </a>
+          <a href="${cookieLink}">${t.cookies}</a>
+
+          <a href="#" data-cookie-settings>${t.cookieSettings}</a>
 
           <a href="#top">
             ${t.backToTop}
