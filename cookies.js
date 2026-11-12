@@ -17,61 +17,50 @@
 
   let analyticsLoaded = false;
 
+  function clearChoice() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (_) { /* storage unavailable */ }
+    try { document.cookie = `${STORAGE_KEY}=; Max-Age=0; path=/; SameSite=Lax`; } catch (_) { /* cookies unavailable */ }
+  }
+
   function readChoice() {
-    try {
-      const rawValue = localStorage.getItem(STORAGE_KEY);
-
-      if (!rawValue) {
-        return null;
-      }
-
-      const savedValue = JSON.parse(rawValue);
-      const maxAge = MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
-
-      const hasInvalidShape =
-        typeof savedValue !== 'object' ||
-        savedValue === null ||
-        typeof savedValue.timestamp !== 'number' ||
-        typeof savedValue.analytics !== 'boolean';
-
-      if (hasInvalidShape) {
-        localStorage.removeItem(STORAGE_KEY);
-        return null;
-      }
-
-      const hasExpired =
-        Date.now() - savedValue.timestamp > maxAge;
-
-      const hasWrongVersion =
-        savedValue.version !== STORAGE_VERSION;
-
-      if (hasExpired || hasWrongVersion) {
-        localStorage.removeItem(STORAGE_KEY);
-        return null;
-      }
-
-      return savedValue.analytics;
-    } catch (error) {
-      localStorage.removeItem(STORAGE_KEY);
-      return null;
+    let rawValue = null;
+    try { rawValue = localStorage.getItem(STORAGE_KEY); } catch (_) { /* use cookie fallback */ }
+    if (!rawValue) {
+      try {
+        const cookieEntry = document.cookie.split('; ').find((item) => item.startsWith(STORAGE_KEY + '='));
+        if (cookieEntry) rawValue = decodeURIComponent(cookieEntry.slice(STORAGE_KEY.length + 1));
+      } catch (_) { /* cookies unavailable */ }
     }
+    if (!rawValue) return null;
+    try {
+      const savedValue = JSON.parse(rawValue);
+      const invalid = !savedValue || typeof savedValue !== 'object' ||
+        typeof savedValue.timestamp !== 'number' ||
+        typeof savedValue.analytics !== 'boolean' ||
+        savedValue.version !== STORAGE_VERSION ||
+        savedValue.timestamp > Date.now() ||
+        Date.now() - savedValue.timestamp > MAX_AGE_DAYS * 86400000;
+      if (invalid) { clearChoice(); return null; }
+      return savedValue.analytics;
+    } catch (_) { clearChoice(); return null; }
   }
 
   function saveChoice(analyticsAllowed) {
+    const serialized = JSON.stringify({
+      version: STORAGE_VERSION,
+      analytics: Boolean(analyticsAllowed),
+      timestamp: Date.now()
+    });
     try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          version: STORAGE_VERSION,
-          analytics: Boolean(analyticsAllowed),
-          timestamp: Date.now()
-        })
-      );
+      localStorage.setItem(STORAGE_KEY, serialized);
+      return;
     } catch (error) {
-      console.warn(
-        'Δεν ήταν δυνατή η αποθήκευση των προτιμήσεων cookies.',
-        error
-      );
+      console.warn('localStorage unavailable; trying a first-party cookie for consent.', error);
+    }
+    try {
+      document.cookie = `${STORAGE_KEY}=${encodeURIComponent(serialized)}; Max-Age=${MAX_AGE_DAYS * 86400}; path=/; SameSite=Lax; Secure`;
+    } catch (error) {
+      console.warn('Could not persist cookie preferences in this browser.', error);
     }
   }
 
