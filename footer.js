@@ -53,7 +53,7 @@ if (footerContainer) {
       backToTop: "Επιστροφή στην κορυφή ↑",
 
       legal:
-        "Materia Hub S.A. • Αρ. Γ.Ε.ΜΗ.: 197351701000 • Έδρα: Κυβέλης 12, Κηφισιά 14563, Ελλάδα"
+        "Materia Hub S.A. • Αρ. Γ.Ε.ΜΗ.: 197351701000 • Έδρα: Αθήνα, Ελλάδα"
     },
 
     en: {
@@ -81,7 +81,7 @@ if (footerContainer) {
       backToTop: "Back to top ↑",
 
       legal:
-        "Materia Hub S.A. • G.E.MI. No.: 197351701000 • Registered office: 12 Kivelis Str., Kifissia 14563, Greece"
+        "Materia Hub S.A. • G.E.MI. No.: 197351701000 • Registered office: Athens, Greece"
     },
 
     pt: {
@@ -109,7 +109,7 @@ if (footerContainer) {
       backToTop: "Voltar ao topo ↑",
 
       legal:
-        "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Rua Kivelis 12, Kifissia 14563, Grécia"
+        "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Athens, Grécia"
     }
   };
 
