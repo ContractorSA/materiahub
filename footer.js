@@ -79,7 +79,7 @@ if (footerContainer) {
       backToTop: "Back to top ↑",
 
       legal:
-        "Materia Hub S.A. • G.E.MI. No.: 123456789000 • Registered office: Athens, Greece"
+        "Materia Hub S.A. • G.E.MI. No.: 197351701000 • Registered office: Athens, Greece"
     },
 
     pt: {
@@ -106,7 +106,7 @@ if (footerContainer) {
       backToTop: "Voltar ao topo ↑",
 
       legal:
-        "Materia Hub S.A. • N.º G.E.MI.: 123456789000 • Sede: Atenas, Grécia"
+        "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Atenas, Grécia"
     }
   };
 
