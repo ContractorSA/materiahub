@@ -9,7 +9,7 @@
 (() => {
   'use strict';
 
-  const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  const GA_MEASUREMENT_ID = 'G-Q1DQELER07';
 
   const STORAGE_KEY = 'materia_cookie_consent';
   const STORAGE_VERSION = 1;
