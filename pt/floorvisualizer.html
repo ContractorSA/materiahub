@@ -270,7 +270,16 @@
 
     }
 
-  </style>
+  
+/* Load the third-party visualizer only after the visitor chooses to open it. */
+.mh-forbo-gate { padding: 70px 24px; text-align: center; background: #fff; }
+.mh-forbo-gate[hidden] { display: none !important; }
+.mh-forbo-gate p { max-width: 600px; margin: 0 auto 20px; line-height: 1.65; color: #303033; }
+.mh-forbo-action { display: inline-flex; justify-content: center; align-items: center; background: #8c131b; color: white; border: 0; padding: 16px 22px; font: 600 14px Manrope,Arial,sans-serif; text-decoration: none; cursor: pointer; }
+.mh-forbo-gate small { display: block; margin: 20px auto 0; max-width: 590px; color: #555; font-size: 12px; line-height: 1.6; }
+.mh-forbo-open { display: none; }
+@media (max-width: 768px), (hover: none) and (pointer: coarse) { .mh-forbo-load { display: none; } .mh-forbo-open { display: inline-flex; } }
+</style>
 
 </head>
 
@@ -379,12 +388,13 @@
 
         <div class="visualizer-box">
 
-          <iframe
-            src="https://forbo-business.esignserver3.com/gallery.do"
-            title="Forbo Visualizador de Pavimentos"
-            loading="lazy"
-            allowfullscreen
-          ></iframe>
+          <div class="mh-forbo-gate" id="mh-forbo-gate">
+  <p>Esta ferramenta é disponibilizada pela Forbo. Ao abri-la, poderão ser utilizados cookies da Forbo.</p>
+  <button type="button" class="mh-forbo-action mh-forbo-load" id="mh-forbo-load">Carregar visualizador nesta página</button>
+  <a class="mh-forbo-action mh-forbo-open" href="https://forbo-business.esignserver3.com/gallery.do" target="_blank" rel="noopener noreferrer">Abrir Floor Visualizer num novo separador</a>
+  <small>No iPhone, a abertura direta evita restrições de cookies de terceiros.</small>
+</div>
+<iframe data-forbo-src="https://forbo-business.esignserver3.com/gallery.do" title="Forbo Floor Visualizer" loading="lazy" allowfullscreen style="display:none"></iframe>
 
         </div>
 
@@ -619,7 +629,7 @@
 
         if (legalText) {
           legalText.textContent =
-            "Materia Hub ΙΚΕ • N.º G.E.MI.: 123456789000 • Sede social: Atenas, Grécia";
+            "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Rua Kivelis 12, Kifissia 14563, Grécia";
         }
 
       }
@@ -649,8 +659,7 @@
 
 
         if (title) {
-          title.textContent =
-            "Definições de cookies";
+          if (title.textContent !== "Definições de cookies") title.textContent = "Definições de cookies";
         }
 
 
@@ -661,8 +670,7 @@
 
 
         if (description) {
-          description.textContent =
-            "Utilizamos tecnologias de armazenamento essenciais e, com o seu consentimento, o Google Analytics 4 para estatísticas de utilização do website.";
+          if (description.textContent !== "Utilizamos tecnologias de armazenamento essenciais e, com o seu consentimento, o Google Analytics 4 para estatísticas de utilização do website.") description.textContent = "Utilizamos tecnologias de armazenamento essenciais e, com o seu consentimento, o Google Analytics 4 para estatísticas de utilização do website.";
         }
 
 
@@ -673,8 +681,7 @@
 
 
         if (acceptButton) {
-          acceptButton.textContent =
-            "Aceitar cookies analíticos";
+          if (acceptButton.textContent !== "Aceitar cookies analíticos") acceptButton.textContent = "Aceitar cookies analíticos";
         }
 
 
@@ -685,8 +692,7 @@
 
 
         if (rejectButton) {
-          rejectButton.textContent =
-            "Apenas essenciais";
+          if (rejectButton.textContent !== "Apenas essenciais") rejectButton.textContent = "Apenas essenciais";
         }
 
 
@@ -697,11 +703,9 @@
 
 
         if (infoLink) {
-          infoLink.textContent =
-            "Política de Cookies";
+          if (infoLink.textContent !== "Política de Cookies") infoLink.textContent = "Política de Cookies";
 
-          infoLink.href =
-            "/pt/cookie-policy.html";
+          if (infoLink.getAttribute("href") !== "/pt/cookie-policy.html") infoLink.href = "/pt/cookie-policy.html";
         }
 
       };
@@ -738,6 +742,20 @@
   </script>
 
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('mh-forbo-load');
+    const gate = document.getElementById('mh-forbo-gate');
+    const frame = document.querySelector('.visualizer-box iframe[data-forbo-src]');
+    if (!button || !gate || !frame) return;
+    button.addEventListener('click', () => {
+      frame.src = frame.dataset.forboSrc;
+      frame.style.display = 'block';
+      gate.hidden = true;
+    });
+  });
+</script>
 </body>
 
 </html>
