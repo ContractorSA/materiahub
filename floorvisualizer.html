@@ -163,6 +163,15 @@ color:#555;
 }
 
 
+
+/* Load the third-party visualizer only after the visitor chooses to open it. */
+.mh-forbo-gate { padding: 70px 24px; text-align: center; background: #fff; }
+.mh-forbo-gate[hidden] { display: none !important; }
+.mh-forbo-gate p { max-width: 600px; margin: 0 auto 20px; line-height: 1.65; color: #303033; }
+.mh-forbo-action { display: inline-flex; justify-content: center; align-items: center; background: #8c131b; color: white; border: 0; padding: 16px 22px; font: 600 14px Manrope,Arial,sans-serif; text-decoration: none; cursor: pointer; }
+.mh-forbo-gate small { display: block; margin: 20px auto 0; max-width: 590px; color: #555; font-size: 12px; line-height: 1.6; }
+.mh-forbo-open { display: none; }
+@media (max-width: 768px), (hover: none) and (pointer: coarse) { .mh-forbo-load { display: none; } .mh-forbo-open { display: inline-flex; } }
 </style>
 
 </head>
@@ -261,13 +270,13 @@ Floor Visualizer
 <div class="visualizer-box">
 
 
-<iframe
-
-src="https://forbo-business.esignserver3.com/gallery.do"
-
-allowfullscreen>
-
-</iframe>
+<div class="mh-forbo-gate" id="mh-forbo-gate">
+  <p>Το εργαλείο παρέχεται από την Forbo. Αν το ανοίξετε, ενδέχεται να χρησιμοποιηθούν cookies της Forbo.</p>
+  <button type="button" class="mh-forbo-action mh-forbo-load" id="mh-forbo-load">Φόρτωση εργαλείου στη σελίδα</button>
+  <a class="mh-forbo-action mh-forbo-open" href="https://forbo-business.esignserver3.com/gallery.do" target="_blank" rel="noopener noreferrer">Άνοιγμα Floor Visualizer σε νέα καρτέλα</a>
+  <small>Σε iPhone το εργαλείο ανοίγει απευθείας για καλύτερη λειτουργία των cookies.</small>
+</div>
+<iframe data-forbo-src="https://forbo-business.esignserver3.com/gallery.do" title="Forbo Floor Visualizer" loading="lazy" allowfullscreen style="display:none"></iframe>
 
 
 </div>
@@ -296,5 +305,19 @@ allowfullscreen>
 
 
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('mh-forbo-load');
+    const gate = document.getElementById('mh-forbo-gate');
+    const frame = document.querySelector('.visualizer-box iframe[data-forbo-src]');
+    if (!button || !gate || !frame) return;
+    button.addEventListener('click', () => {
+      frame.src = frame.dataset.forboSrc;
+      frame.style.display = 'block';
+      gate.hidden = true;
+    });
+  });
+</script>
 </body>
 </html>
