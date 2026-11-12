@@ -1,493 +1,587 @@
-/* Materia Hub - Cookie consent + Google Analytics 4
-   -------------------------------------------------
-   1. Αντικατάστησε το G-XXXXXXXXXX με το πραγματικό GA4 Measurement ID.
-   2. Πρόσθεσε πριν από το </body> σε κάθε σελίδα:
-      <script defer src="cookies.js"></script>
-   3. Μην προσθέσεις ξεχωριστό Google Analytics script στο <head>.
-*/
+const footerContainer = document.querySelector("#site-footer");
 
-(() => {
-  'use strict';
+if (footerContainer) {
+  const pathname = window.location.pathname;
 
-  const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  const isEnglish =
+    pathname === "/en" ||
+    pathname === "/en/" ||
+    pathname.startsWith("/en/");
 
-  const STORAGE_KEY = 'materia_cookie_consent';
-  const STORAGE_VERSION = 1;
-  const MAX_AGE_DAYS = 365;
+  const isPortuguese =
+    pathname === "/pt" ||
+    pathname === "/pt/" ||
+    pathname.startsWith("/pt/");
 
-  let analyticsLoaded = false;
+  const currentLanguage =
+    isEnglish
+      ? "en"
+      : isPortuguese
+        ? "pt"
+        : "el";
 
-  function clearChoice() {
-    try { localStorage.removeItem(STORAGE_KEY); } catch (_) { /* storage unavailable */ }
-    try { document.cookie = `${STORAGE_KEY}=; Max-Age=0; path=/; SameSite=Lax`; } catch (_) { /* cookies unavailable */ }
-  }
+  const languageRoot =
+    currentLanguage === "en"
+      ? "/en/"
+      : currentLanguage === "pt"
+        ? "/pt/"
+        : "/";
 
-  function readChoice() {
-    let rawValue = null;
-    try { rawValue = localStorage.getItem(STORAGE_KEY); } catch (_) { /* use cookie fallback */ }
-    if (!rawValue) {
-      try {
-        const cookieEntry = document.cookie.split('; ').find((item) => item.startsWith(STORAGE_KEY + '='));
-        if (cookieEntry) rawValue = decodeURIComponent(cookieEntry.slice(STORAGE_KEY.length + 1));
-      } catch (_) { /* cookies unavailable */ }
+  const translations = {
+    el: {
+      home: "Materia Hub - Αρχική",
+
+      navigation: "Πλοήγηση",
+      company: "Η εταιρεία",
+      solutions: "Λύσεις",
+      projects: "Έργα",
+
+      support: "Υποστήριξη",
+      specifications: "Προδιαγραφές",
+      samples: "Δείγματα",
+      valueEngineering: "Value engineering",
+
+      contact: "Επικοινωνία",
+      country: "Ελλάδα",
+
+      websiteBy: "Website by",
+
+      privacy: "Πολιτική Απορρήτου",
+      terms: "Όροι Χρήσης",
+      cookies: "Cookies",
+      cookieSettings: "Ρυθμίσεις cookies",
+      backToTop: "Επιστροφή στην κορυφή ↑",
+
+      legal:
+        "Materia Hub S.A. • Αρ. Γ.Ε.ΜΗ.: 197351701000 • Έδρα: Κυβέλης 12, Κηφισιά 14563, Ελλάδα"
+    },
+
+    en: {
+      home: "Materia Hub - Home",
+
+      navigation: "Navigation",
+      company: "Company",
+      solutions: "Solutions",
+      projects: "Projects",
+
+      support: "Support",
+      specifications: "Specifications",
+      samples: "Samples",
+      valueEngineering: "Value engineering",
+
+      contact: "Contact",
+      country: "Greece",
+
+      websiteBy: "Website by",
+
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+      cookies: "Cookies",
+      cookieSettings: "Cookie settings",
+      backToTop: "Back to top ↑",
+
+      legal:
+        "Materia Hub S.A. • G.E.MI. No.: 197351701000 • Registered office: 12 Kivelis Str., Kifissia 14563, Greece"
+    },
+
+    pt: {
+      home: "Materia Hub - Início",
+
+      navigation: "Navegação",
+      company: "Empresa",
+      solutions: "Soluções",
+      projects: "Projetos",
+
+      support: "Apoio",
+      specifications: "Especificações",
+      samples: "Amostras",
+      valueEngineering: "Engenharia de valor",
+
+      contact: "Contacto",
+      country: "Grécia",
+
+      websiteBy: "Website por",
+
+      privacy: "Política de Privacidade",
+      terms: "Termos de Utilização",
+      cookies: "Cookies",
+      cookieSettings: "Definições de cookies",
+      backToTop: "Voltar ao topo ↑",
+
+      legal:
+        "Materia Hub S.A. • N.º G.E.MI.: 197351701000 • Sede: Rua Kivelis 12, Kifissia 14563, Grécia"
     }
-    if (!rawValue) return null;
-    try {
-      const savedValue = JSON.parse(rawValue);
-      const invalid = !savedValue || typeof savedValue !== 'object' ||
-        typeof savedValue.timestamp !== 'number' ||
-        typeof savedValue.analytics !== 'boolean' ||
-        savedValue.version !== STORAGE_VERSION ||
-        savedValue.timestamp > Date.now() ||
-        Date.now() - savedValue.timestamp > MAX_AGE_DAYS * 86400000;
-      if (invalid) { clearChoice(); return null; }
-      return savedValue.analytics;
-    } catch (_) { clearChoice(); return null; }
-  }
+  };
 
-  function saveChoice(analyticsAllowed) {
-    const serialized = JSON.stringify({
-      version: STORAGE_VERSION,
-      analytics: Boolean(analyticsAllowed),
-      timestamp: Date.now()
-    });
-    try {
-      localStorage.setItem(STORAGE_KEY, serialized);
-      return;
-    } catch (error) {
-      console.warn('localStorage unavailable; trying a first-party cookie for consent.', error);
-    }
-    try {
-      document.cookie = `${STORAGE_KEY}=${encodeURIComponent(serialized)}; Max-Age=${MAX_AGE_DAYS * 86400}; path=/; SameSite=Lax; Secure`;
-    } catch (error) {
-      console.warn('Could not persist cookie preferences in this browser.', error);
-    }
-  }
+  const t = translations[currentLanguage];
 
-  function hasValidMeasurementId() {
-    return (
-      /^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID) &&
-      GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX'
-    );
-  }
+  const privacyLink =
+    `${languageRoot}privacy-policy.html`;
 
-  function ensureGtag() {
-    window.dataLayer = window.dataLayer || [];
+  const termsLink =
+    `${languageRoot}terms-of-use.html`;
 
-    window.gtag =
-      window.gtag ||
-      function () {
-        window.dataLayer.push(arguments);
-      };
-  }
+  const cookieLink =
+    `${languageRoot}cookie-policy.html`;
 
-  function updateAnalyticsConsent(isGranted) {
-    ensureGtag();
+  footerContainer.innerHTML = `
+    <footer class="site-footer">
 
-    window.gtag('consent', 'update', {
-      analytics_storage: isGranted
-        ? 'granted'
-        : 'denied',
-
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-  }
-
-  function loadAnalytics() {
-    if (
-      analyticsLoaded ||
-      !hasValidMeasurementId()
-    ) {
-      return;
-    }
-
-    analyticsLoaded = true;
-
-    ensureGtag();
-
-    /*
-     * Το tag δεν φορτώνεται πριν από συγκατάθεση.
-     * Αρχικά δηλώνουμε denied και μετά granted,
-     * πριν από την αρχικοποίηση του GA4.
-     */
-    window.gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-
-    updateAnalyticsConsent(true);
-
-    window.gtag('js', new Date());
-
-    window.gtag(
-      'config',
-      GA_MEASUREMENT_ID,
-      {
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false
-      }
-    );
-
-    const analyticsScript =
-      document.createElement('script');
-
-    analyticsScript.async = true;
-
-    analyticsScript.src =
-      'https://www.googletagmanager.com/gtag/js?id=' +
-      encodeURIComponent(GA_MEASUREMENT_ID);
-
-    analyticsScript.onerror = () => {
-      analyticsLoaded = false;
-
-      console.warn(
-        'Δεν ήταν δυνατή η φόρτωση του Google Analytics.'
-      );
-    };
-
-    document.head.appendChild(
-      analyticsScript
-    );
-  }
-
-  function removeAnalyticsCookies() {
-    const cookies =
-      document.cookie.split(';');
-
-    const hostname =
-      window.location.hostname;
-
-    const hostnameParts =
-      hostname.split('.');
-
-    const domains = new Set([
-      '',
-      hostname,
-      `.${hostname}`
-    ]);
-
-    if (hostnameParts.length >= 2) {
-      domains.add(
-        `.${hostnameParts.slice(-2).join('.')}`
-      );
-    }
-
-    cookies.forEach((cookie) => {
-      const cookieName =
-        cookie.split('=')[0].trim();
-
-      const isGoogleAnalyticsCookie =
-        cookieName === '_ga' ||
-        cookieName.startsWith('_ga_');
-
-      if (!isGoogleAnalyticsCookie) {
-        return;
-      }
-
-      domains.forEach((domain) => {
-        const domainAttribute = domain
-          ? `; domain=${domain}`
-          : '';
-
-        document.cookie =
-          `${cookieName}=; ` +
-          `Max-Age=0; ` +
-          `path=/` +
-          `${domainAttribute}; ` +
-          `SameSite=Lax`;
-
-        document.cookie =
-          `${cookieName}=; ` +
-          `expires=Thu, 01 Jan 1970 00:00:00 GMT; ` +
-          `path=/` +
-          `${domainAttribute}; ` +
-          `SameSite=Lax`;
-      });
-    });
-  }
-
-  function grantAnalytics() {
-    saveChoice(true);
-
-    if (analyticsLoaded) {
-      updateAnalyticsConsent(true);
-    } else {
-      loadAnalytics();
-    }
-  }
-
-  function denyAnalytics() {
-    saveChoice(false);
-
-    /*
-     * Αν το GA4 είχε φορτωθεί από προηγούμενη αποδοχή,
-     * ενημερώνεται άμεσα ότι η συγκατάθεση ανακλήθηκε.
-     */
-    if (
-      typeof window.gtag === 'function'
-    ) {
-      updateAnalyticsConsent(false);
-    }
-
-    removeAnalyticsCookies();
-  }
-
-  const bannerStyles = `
-    .mh-cookie-banner {
-      position: fixed;
-      z-index: 9999;
-      left: 20px;
-      right: 20px;
-      bottom: 20px;
-      max-width: 720px;
-      margin: auto;
-      padding: 24px;
-      color: #ffffff;
-      background: #101112;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-left: 4px solid #8c131b;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-      font-family: Manrope, Arial, sans-serif;
-    }
-
-    .mh-cookie-banner h2 {
-      margin: 0 0 10px;
-      font-family: Montserrat, Arial, sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .mh-cookie-banner p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .mh-cookie-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .mh-cookie-actions button,
-    .mh-cookie-actions a {
-      min-height: 42px;
-      padding: 11px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      font-family: Manrope, Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .mh-cookie-accept {
-      color: #ffffff;
-      background: #8c131b;
-      border-color: #8c131b !important;
-    }
-
-    .mh-cookie-reject {
-      color: #ffffff;
-      background: transparent;
-    }
-
-    .mh-cookie-info {
-      display: inline-flex;
-      align-items: center;
-      color: rgba(255, 255, 255, 0.76);
-    }
-
-    @media (max-width: 600px) {
-      .mh-cookie-banner {
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        padding: 20px;
-      }
-
-      .mh-cookie-actions > * {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-      }
-    }
-  `;
-
-  function createBanner() {
-    const existingBanner =
-      document.querySelector(
-        '.mh-cookie-banner'
-      );
-
-    if (existingBanner) {
-      return;
-    }
-
-    if (
-      !document.getElementById(
-        'mh-cookie-style'
-      )
-    ) {
-      const styleElement =
-        document.createElement('style');
-
-      styleElement.id =
-        'mh-cookie-style';
-
-      styleElement.textContent =
-        bannerStyles;
-
-      document.head.appendChild(
-        styleElement
-      );
-    }
-
-    const banner =
-      document.createElement('section');
-
-    banner.className =
-      'mh-cookie-banner';
-
-    banner.setAttribute(
-      'role',
-      'dialog'
-    );
-
-    banner.setAttribute(
-      'aria-modal',
-      'true'
-    );
-
-    banner.setAttribute(
-      'aria-labelledby',
-      'mh-cookie-title'
-    );
-
-    banner.setAttribute(
-      'aria-describedby',
-      'mh-cookie-description'
-    );
-
-    banner.innerHTML = `
-      <h2 id="mh-cookie-title">
-        Ρυθμίσεις cookies
-      </h2>
-
-      <p id="mh-cookie-description">
-        Χρησιμοποιούμε απαραίτητα μέσα αποθήκευσης και,
-        μόνο με τη συγκατάθεσή σας, Google Analytics 4
-        για στατιστικά επισκεψιμότητας.
-      </p>
-
-      <div class="mh-cookie-actions">
-        <button
-          class="mh-cookie-accept"
-          type="button"
-        >
-          Αποδοχή στατιστικών
-        </button>
-
-        <button
-          class="mh-cookie-reject"
-          type="button"
-        >
-          Μόνο απαραίτητα
-        </button>
+      <div class="container footer-top">
 
         <a
-          class="mh-cookie-info"
-          href="cookie-policy.html"
+          class="brand footer-brand"
+          href="${languageRoot}#top"
+          aria-label="${t.home}"
         >
-          Πολιτική Cookies
+          <img
+            class="brand-logo footer-logo"
+            src="/images/materia-hub-footer-logo.png"
+            alt="Materia Hub"
+          >
         </a>
+
+
+        <div class="footer-columns">
+
+          <div>
+            <h3>${t.navigation}</h3>
+
+            <a href="${languageRoot}#about">
+              ${t.company}
+            </a>
+
+            <a href="${languageRoot}#solutions">
+              ${t.solutions}
+            </a>
+
+            <a href="${languageRoot}#project">
+              ${t.projects}
+            </a>
+          </div>
+
+
+          <div>
+            <h3>${t.support}</h3>
+
+            <a href="${languageRoot}#support">
+              ${t.specifications}
+            </a>
+
+            <a href="${languageRoot}#support">
+              ${t.samples}
+            </a>
+
+            <a href="${languageRoot}#support">
+              ${t.valueEngineering}
+            </a>
+          </div>
+
+
+          <div>
+            <h3>${t.contact}</h3>
+
+            <a href="tel:+302106232650">
+              210 6232650
+            </a>
+
+            <a href="mailto:info@materiahub.gr">
+              info@materiahub.gr
+            </a>
+
+            <p>${t.country}</p>
+          </div>
+
+        </div>
+
       </div>
-    `;
 
-    document.body.appendChild(
-      banner
-    );
 
-    const acceptButton =
-      banner.querySelector(
-        '.mh-cookie-accept'
-      );
+      <div class="container footer-bottom">
 
-    const rejectButton =
-      banner.querySelector(
-        '.mh-cookie-reject'
-      );
+        <div class="footer-bottom-left">
 
-    acceptButton.addEventListener(
-      'click',
-      () => {
-        grantAnalytics();
-        banner.remove();
-      }
-    );
+          <span>
+            © <span data-year></span> Materia Hub
+          </span>
 
-    rejectButton.addEventListener(
-      'click',
-      () => {
-        denyAnalytics();
-        banner.remove();
-      }
-    );
+          <span class="footer-credit">
+            ${t.websiteBy}
+            <a href="mailto:panoskopi@yahoo.gr">
+              Panagiotis Kopitsas
+            </a>
+          </span>
 
-    acceptButton.focus();
+        </div>
+
+
+        <div class="footer-bottom-right">
+
+          <a href="${privacyLink}">
+            ${t.privacy}
+          </a>
+
+          <a href="${termsLink}">
+            ${t.terms}
+          </a>
+
+          <a href="${cookieLink}">${t.cookies}</a>
+
+          <a href="#" data-cookie-settings>${t.cookieSettings}</a>
+
+          <a href="#top">
+            ${t.backToTop}
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="container footer-legal">
+
+        <p>
+          ${t.legal}
+        </p>
+
+      </div>
+
+    </footer>
+  `;
+
+
+  const yearElement =
+    footerContainer.querySelector("[data-year]");
+
+  if (yearElement) {
+    yearElement.textContent =
+      new Date().getFullYear();
+  }
+}
+
+
+/* =========================================================
+   MATERIA HUB CHATBOT LOADER
+========================================================= */
+
+(() => {
+  "use strict";
+
+  const CHATBOT_VERSION = "9";
+
+
+  /* ---------------------------------------------------------
+     CHATBOT LANGUAGE
+  --------------------------------------------------------- */
+
+  function getChatbotLanguage() {
+    const pathname =
+      window.location.pathname;
+
+    const isEnglish =
+      pathname === "/en" ||
+      pathname === "/en/" ||
+      pathname.startsWith("/en/");
+
+    const isPortuguese =
+      pathname === "/pt" ||
+      pathname === "/pt/" ||
+      pathname.startsWith("/pt/");
+
+    if (isEnglish) {
+      return "en";
+    }
+
+    if (isPortuguese) {
+      return "pt";
+    }
+
+    return "el";
   }
 
-  function openSettings() {
-    /*
-     * Δεν διαγράφουμε αμέσως την προηγούμενη επιλογή.
-     * Η επιλογή αλλάζει μόνο όταν ο χρήστης πατήσει
-     * ένα από τα δύο κουμπιά.
-     */
-    createBanner();
+
+  /* ---------------------------------------------------------
+     KNOWLEDGE BASE FILE
+  --------------------------------------------------------- */
+
+  function getChatbotDataFile() {
+    const language =
+      getChatbotLanguage();
+
+    switch (language) {
+
+      case "en":
+        return "/chatbot-data-en.js";
+
+      case "pt":
+        return "/chatbot-data-pt.js";
+
+      default:
+        return "/chatbot-data.js";
+
+    }
   }
 
-  document.addEventListener(
-    'click',
-    (event) => {
-      const settingsButton =
-        event.target.closest(
-          '[data-cookie-settings]'
+
+  /* ---------------------------------------------------------
+     CSS
+  --------------------------------------------------------- */
+
+  function loadChatbotCSS() {
+
+    if (
+      document.querySelector(
+        "#mh-chatbot-css"
+      )
+    ) {
+      return;
+    }
+
+
+    const link =
+      document.createElement("link");
+
+    link.id =
+      "mh-chatbot-css";
+
+    link.rel =
+      "stylesheet";
+
+    link.href =
+      `/chatbot.css?v=${CHATBOT_VERSION}`;
+
+    document.head.appendChild(
+      link
+    );
+  }
+
+
+  /* ---------------------------------------------------------
+     SCRIPT LOADER
+  --------------------------------------------------------- */
+
+  function loadScript(src, id) {
+
+    return new Promise(
+      (resolve, reject) => {
+
+        const existing =
+          document.getElementById(id);
+
+
+        if (existing) {
+          existing.remove();
+        }
+
+
+        const script =
+          document.createElement("script");
+
+        script.id =
+          id;
+
+        script.src =
+          `${src}?v=${CHATBOT_VERSION}`;
+
+        script.async =
+          false;
+
+
+        script.onload = () => {
+
+          console.log(
+            `[Materia Chatbot] Loaded: ${src}`
+          );
+
+          resolve();
+        };
+
+
+        script.onerror = error => {
+
+          console.error(
+            `[Materia Chatbot] Failed to load: ${src}`,
+            error
+          );
+
+          reject(
+            new Error(
+              `Failed to load ${src}`
+            )
+          );
+
+        };
+
+
+        document.body.appendChild(
+          script
         );
 
-      if (!settingsButton) {
-        return;
       }
-
-      event.preventDefault();
-      openSettings();
-    }
-  );
-
-  const savedChoice = readChoice();
-
-  if (savedChoice === true) {
-    loadAnalytics();
-  } else if (savedChoice === false) {
-    removeAnalyticsCookies();
-  } else if (
-    document.readyState === 'loading'
-  ) {
-    document.addEventListener(
-      'DOMContentLoaded',
-      createBanner,
-      { once: true }
     );
-  } else {
-    createBanner();
   }
 
-  window.MateriaCookieConsent = {
-    openSettings
-  };
+
+  /* ---------------------------------------------------------
+     START
+  --------------------------------------------------------- */
+
+  async function startMateriaChatbot() {
+
+    const language =
+      getChatbotLanguage();
+
+    const chatbotDataFile =
+      getChatbotDataFile();
+
+
+    console.log(
+      "[Materia Chatbot] Loader started"
+    );
+
+    console.log(
+      "[Materia Chatbot] Language:",
+      language
+    );
+
+    console.log(
+      "[Materia Chatbot] Data file:",
+      chatbotDataFile
+    );
+
+
+    loadChatbotCSS();
+
+
+    try {
+
+      /* ---------------------------------------
+         1. KNOWLEDGE BASE
+      --------------------------------------- */
+
+  window.MATERIA_CHATBOT_DATA =
+  undefined;
+
+
+/* ---------------------------------------
+   LOAD KNOWLEDGE BASE
+   If it fails, chatbot still starts
+--------------------------------------- */
+
+try {
+
+  await loadScript(
+    chatbotDataFile,
+    "mh-chatbot-data-script"
+  );
+
+  console.log(
+    "[Materia Chatbot] Knowledge base:",
+    Array.isArray(
+      window.MATERIA_CHATBOT_DATA
+    )
+      ? window.MATERIA_CHATBOT_DATA.length
+      : 0,
+    "entries"
+  );
+
+} catch (dataError) {
+
+  console.warn(
+    "[Materia Chatbot] Knowledge base unavailable. Continuing without it.",
+    dataError
+  );
+
+  window.MATERIA_CHATBOT_DATA = [];
+
+}
+
+
+      /* ---------------------------------------
+         2. CHATBOT
+      --------------------------------------- */
+
+      const existingChatbot =
+        document.querySelector(
+          ".mh-chatbot"
+        );
+
+
+      if (existingChatbot) {
+        existingChatbot.remove();
+      }
+
+
+      await loadScript(
+        "/chatbot.js",
+        "mh-chatbot-main-script"
+      );
+
+
+      /* ---------------------------------------
+         3. CHECK
+      --------------------------------------- */
+
+      window.setTimeout(
+        () => {
+
+          const chatbot =
+            document.querySelector(
+              ".mh-chatbot"
+            );
+
+
+          if (chatbot) {
+
+            console.log(
+              `[Materia Chatbot] ✓ Ready (${language.toUpperCase()})`
+            );
+
+          } else {
+
+            console.error(
+              "[Materia Chatbot] chatbot.js loaded but UI was not created."
+            );
+
+          }
+
+        },
+        100
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "[Materia Chatbot] Startup error:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /* ---------------------------------------------------------
+     DOM READY
+  --------------------------------------------------------- */
+
+  if (
+    document.readyState === "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      startMateriaChatbot,
+      {
+        once: true
+      }
+    );
+
+  } else {
+
+    startMateriaChatbot();
+
+  }
+
 })();
