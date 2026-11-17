@@ -307,7 +307,7 @@
 
     <a
       class="company-topbar-item"
-      href="https://www.linkedin.com/company/145453830/"
+      href="https://www.linkedin.com/company/materia-hub/"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Materia Hub στο LinkedIn"
