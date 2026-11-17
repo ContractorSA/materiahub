@@ -313,16 +313,54 @@
       aria-label="Materia Hub στο LinkedIn"
       title="LinkedIn"
     >
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-        <path d="M8 10v7"></path>
-        <path d="M8 7.5v.1"></path>
-        <path d="M12 17v-7"></path>
-        <path d="M12 13a3 3 0 0 1 6 0v4"></path>
-      </svg>
+<svg
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <rect
+    x="3"
+    y="3"
+    width="18"
+    height="18"
+    rx="2"
+    fill="#0A66C2"
+    stroke="none"
+  ></rect>
+
+  <path
+    d="M8 10v7"
+    stroke="#FFFFFF"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  ></path>
+
+  <circle
+    cx="8"
+    cy="7.5"
+    r="1"
+    fill="#FFFFFF"
+  ></circle>
+
+  <path
+    d="M12 17v-7"
+    stroke="#FFFFFF"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  ></path>
+
+  <path
+    d="M12 13a3 3 0 0 1 6 0v4"
+    stroke="#FFFFFF"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  ></path>
+</svg>
     </a>
   </div>
 
